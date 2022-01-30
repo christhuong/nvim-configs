@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-" search for file
+" search for file (require installing global fzf and rg)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " show folder tree with icons
@@ -13,7 +13,7 @@ Plug 'easymotion/vim-easymotion' " Must try!
 Plug 'ntpeters/vim-better-whitespace'
 " comment code
 Plug 'tomtom/tcomment_vim'
-" vim surround
+" change the surrounding of codes
 Plug 'tpope/vim-surround' " Must try!
 " git commands
 Plug 'tpope/vim-fugitive'
@@ -31,5 +31,11 @@ Plug 'neoclide/coc-tsserver'
 " taking notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
+" code suggestions from Github
 Plug 'github/copilot.vim'
+" themes
+Plug 'ayu-theme/ayu-vim'
+" vim status line
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()

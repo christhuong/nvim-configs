@@ -1,11 +1,3 @@
-call plug#begin('~/.vim/plugged')
-" theme
-Plug 'ayu-theme/ayu-vim'
-" vim status line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-call plug#end()
-
 " colors and theme
 colorscheme ayu
 let ayucolor="dark"
@@ -19,8 +11,9 @@ let g:NERDTreeLimitedSyntax = 1
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeShowHidden=1
 
-" airline
+" airline theme
 let g:airline_theme='transparent'
+" airline tabline customizations
 let g:airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#buffers_label = ''
 let g:airline#extensions#tabline#enabled = 1
@@ -33,17 +26,12 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0
 
-" fzf
+" fzf layout customizations
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_action =
-  \ {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-s': 'split'
-  \ }
+" fzf color customizations
 let g:fzf_colors =
   \ {
   \ 'fg':      ['fg', 'Normal'],
@@ -61,8 +49,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment']
   \ }
 
-" change current line number highlight color
-highlight CursorLineNr guifg=White guibg=NONE
 " not highlight error message at the bottom
 highlight ErrorMsg NONE
+" hide sign column
 highlight SignColumn guibg=NONE

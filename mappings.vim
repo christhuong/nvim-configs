@@ -15,12 +15,18 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" searching
+" searching with fzf
 noremap <leader>o :Buffers <CR>
 noremap <leader>f :GFiles<CR>
 noremap <leader>a :Files <CR>
 noremap <leader>c :Rg <CR>
 noremap <leader>l :Lines <CR>
+let g:fzf_action =
+  \ {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-s': 'split'
+  \ }
 
 " quick saving / edit
 noremap <leader>w :w<cr>
