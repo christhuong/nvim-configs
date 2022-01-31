@@ -62,7 +62,6 @@ tnoremap jj <C-\><C-n>
 nnoremap <leader>. :vsplit<CR>:terminal<CR>i
 tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
-
 " tabs mappings
 noremap <leader>1 1gt
 noremap <leader>2 2gt

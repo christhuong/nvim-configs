@@ -1,23 +1,22 @@
 call plug#begin('~/.vim/plugged')
-" search for file (require installing global fzf and rg)
+" search for files, folders and more (requires global fzf and ripgrep)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" show folder tree with icons
+" show the folder tree
 Plug 'scrooloose/nerdtree'
+" file and folder icons
 Plug 'ryanoasis/vim-devicons'
-" language pack
-Plug 'sheerun/vim-polyglot'
-" go to a code position
+" move cursor to any position in current screen
 Plug 'easymotion/vim-easymotion' " Must try!
-" highlight redundant white space
+" highlight redundant white spaces
 Plug 'ntpeters/vim-better-whitespace'
-" comment code
+" comment code more easily
 Plug 'tomtom/tcomment_vim'
-" change the surrounding of codes
+" change the surroundings of codes
 Plug 'tpope/vim-surround' " Must try!
-" git commands
+" perform git commands
 Plug 'tpope/vim-fugitive'
-" show git change in the number column
+" show git changes in the sign column
 Plug 'mhinz/vim-signify'
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -28,7 +27,7 @@ Plug 'prettier/vim-prettier', {
 " coc vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver'
-" taking notes
+" take simple notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 " code suggestions from Github

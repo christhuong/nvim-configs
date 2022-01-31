@@ -8,7 +8,7 @@ let g:NERDTreeDisableExactMatchHighlight = 1
 let g:NERDTreeDisablePatternMatchHighlight = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['rb', 'js', 'html', 'haml', 'css', 'erb', 'jsx', 'scss', 'ts', 'tsx']
 let g:NERDTreeLimitedSyntax = 1
-let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeHighlightCursorline = 1
 let g:NERDTreeShowHidden=1
 
 " airline theme
@@ -29,7 +29,6 @@ let g:airline#extensions#tabline#show_tab_type = 0
 " fzf layout customizations
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_layout = { 'down': '~40%' }
 " fzf color customizations
 let g:fzf_colors =
@@ -51,5 +50,3 @@ let g:fzf_colors =
 
 " not highlight error message at the bottom
 highlight ErrorMsg NONE
-" hide sign column
-highlight SignColumn guibg=NONE
