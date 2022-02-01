@@ -47,9 +47,7 @@ noremap <leader>gs :Git<cr>
 noremap <leader>gb :Git blame<cr>
 
 " easy jump
-nmap <leader>j <Plug>(easymotion-overwin-w)
-autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd silent! CocEnable
+nmap <leader>j :HopWordMW<cr>
 
 " resize splits
 nnoremap <silent> = :exe "vertical resize +10"<CR>

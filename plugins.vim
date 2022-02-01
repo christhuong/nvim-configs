@@ -1,4 +1,6 @@
 call plug#begin('~/.vim/plugged')
+" language syntax
+Plug 'sheerun/vim-polyglot'
 " search for files, folders and more (requires global fzf and ripgrep)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -7,7 +9,7 @@ Plug 'scrooloose/nerdtree'
 " file and folder icons
 Plug 'ryanoasis/vim-devicons'
 " move cursor to any position in current screen
-Plug 'easymotion/vim-easymotion' " Must try!
+Plug 'phaazon/hop.nvim'
 " highlight redundant white spaces
 Plug 'ntpeters/vim-better-whitespace'
 " comment code more easily

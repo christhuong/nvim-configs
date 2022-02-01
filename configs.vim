@@ -50,3 +50,8 @@ autocmd BufWritePre * StripWhitespace
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
+
+" hop setup
+lua << EOF
+require'hop'.setup()
+EOF
