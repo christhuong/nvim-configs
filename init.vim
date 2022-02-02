@@ -1,4 +1,4 @@
-source ~/.vim/plugins.vim
-source ~/.vim/themes.vim
-source ~/.vim/configs.vim
-source ~/.vim/mappings.vim
+source ~/.config/nvim/vim/plugins.vim
+source ~/.config/nvim/vim/themes.vim
+source ~/.config/nvim/vim/configs.vim
+source ~/.config/nvim/vim/mappings.vim
