@@ -1,6 +1,8 @@
 " colors and theme
 colorscheme ayu
 let ayucolor="dark"
+let g:ayu_italic_comment = 1
+let g:ayu_sign_contrast = 1
 
 " nerdtree customizations
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
