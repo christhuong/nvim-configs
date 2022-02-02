@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 " language syntax
-Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neovim/nvim-lspconfig'
 " search for files, folders and more (requires global fzf and ripgrep)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -22,13 +23,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 " auto pairs
 Plug 'jiangmiao/auto-pairs'
-" prettier
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'json', 'vue'] }
-" coc vim
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver'
 " take simple notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'

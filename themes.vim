@@ -50,3 +50,4 @@ let g:fzf_colors =
 
 " not highlight error message at the bottom
 highlight ErrorMsg NONE
+highlight SignColumn guibg=NONE

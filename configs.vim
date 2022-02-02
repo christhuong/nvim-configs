@@ -5,9 +5,6 @@ set background=dark
 set clipboard=unnamed
 set encoding=UTF-8
 set expandtab " tab is spaces
-set foldlevel=2 " start folding at level 2
-set foldmethod=syntax " fold by syntax
-set foldnestmax=10 " fold nested to 10 levels
 set hidden
 set hlsearch " highlight search
 set ignorecase " required for smartcase to work
@@ -32,13 +29,6 @@ set termguicolors " enable true colors support
 set timeoutlen=1000 " set key map timeout to 1 second
 set ttimeoutlen=0 " set typing timeout to 0 seconds
 
-" coc-vim configs
-let g:coc_global_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-prettier',
-  \ 'coc-eslint'
-  \ ]
-
 " vim notes configs
 let g:notes_directories = ['~/Documents/Notes'] " where to look for notes
 let g:notes_suffix = '.md' " note extension
@@ -55,3 +45,25 @@ endif
 lua << EOF
 require'hop'.setup()
 EOF
+
+" language servers setup
+lua << EOF
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.solargraph.setup{}
+require'lspconfig'.pyright.setup{}
+EOF
+
+" treesitter setup
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+}
+EOF
+" fold with treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
