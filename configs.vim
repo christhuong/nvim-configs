@@ -41,20 +41,21 @@ if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
 
-" hop setup
-lua << EOF
-require'hop'.setup()
-EOF
+" fold with treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
-" language servers setup
+" lua
 lua << EOF
+-- hop setup
+require'hop'.setup()
+
+-- language servers setup
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.solargraph.setup{}
 require'lspconfig'.pyright.setup{}
-EOF
 
-" treesitter setup
-lua <<EOF
+-- treesitter setup
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -64,6 +65,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-" fold with treesitter
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
