@@ -19,7 +19,7 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 noremap <leader>o :Buffers <CR>
 noremap <leader>f :GFiles<CR>
 noremap <leader>a :Files <CR>
-noremap <leader>c :Rg <CR>
+noremap <leader>w :Rg <CR>
 noremap <leader>l :Lines <CR>
 let g:fzf_action =
   \ {
@@ -27,11 +27,6 @@ let g:fzf_action =
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-s': 'split'
   \ }
-
-" quick saving / edit
-noremap <leader>w :w<cr>
-noremap <leader>q :q<cr>
-noremap <leader>x :x<cr>
 
 " split screen
 set splitright
@@ -45,6 +40,7 @@ nnoremap cP :let @* = expand("%:p")<CR>
 " git
 noremap <leader>gs :Git<cr>
 noremap <leader>gb :Git blame<cr>
+noremap <leader>gb :Gdiff<cr>
 
 " easy jump
 nmap <leader>j :HopWordMW<cr>
