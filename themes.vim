@@ -1,8 +1,11 @@
 " colors and theme
-colorscheme ayu
-let ayucolor="dark"
-let g:ayu_italic_comment = 1
-let g:ayu_sign_contrast = 1
+" colorscheme ayu
+" let ayucolor="dark"
+" let g:ayu_italic_comment = 1
+" let g:ayu_sign_contrast = 1
+let g:tokyonight_style = "night"
+" let g:tokyonight_italic_functions = 1
+colorscheme tokyonight
 
 " nerdtree customizations
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1

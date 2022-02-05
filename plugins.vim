@@ -29,6 +29,7 @@ Plug 'xolox/vim-misc'
 Plug 'github/copilot.vim'
 " themes
 Plug 'Luxed/ayu-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
