@@ -45,23 +45,4 @@ endif
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-" lua
-lua << EOF
--- hop setup
-require'hop'.setup()
-
--- language servers setup
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.solargraph.setup{}
-require'lspconfig'.pyright.setup{}
-
--- treesitter setup
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
-}
-EOF
+set completeopt=menu,menuone,noselect

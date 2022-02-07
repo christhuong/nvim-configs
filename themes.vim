@@ -7,15 +7,6 @@ let g:tokyonight_style = "night"
 " let g:tokyonight_italic_functions = 1
 colorscheme tokyonight
 
-" nerdtree customizations
-let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeDisableExactMatchHighlight = 1
-let g:NERDTreeDisablePatternMatchHighlight = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['rb', 'js', 'html', 'haml', 'css', 'erb', 'jsx', 'scss', 'ts', 'tsx']
-let g:NERDTreeLimitedSyntax = 1
-let g:NERDTreeHighlightCursorline = 1
-let g:NERDTreeShowHidden=1
-
 " airline theme
 let g:airline_theme='transparent'
 " airline tabline customizations
@@ -34,6 +25,7 @@ let g:airline#extensions#tabline#show_tab_type = 0
 " fzf layout customizations
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 let g:fzf_layout = { 'down': '~40%' }
 " fzf color customizations
 let g:fzf_colors =
