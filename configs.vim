@@ -36,13 +36,7 @@ let g:notes_suffix = '.md' " note extension
 " auto stripe white spaces
 autocmd BufWritePre * StripWhitespace
 
-" after a re-source, fix syntax matching issues (concealing brackets):
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-
 " fold with treesitter
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-
 set completeopt=menu,menuone,noselect

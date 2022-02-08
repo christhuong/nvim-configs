@@ -2,15 +2,6 @@ call plug#begin('~/.config/nvim/plugged')
 " lsp
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-" Code completion
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
 " syntax highlight
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " search (requires global fzf and ripgrep)
@@ -50,7 +41,6 @@ call plug#end()
 
 lua << EOF
 require"hop".setup()
-require"configs.cmp".config()
 require"configs.gitsigns".config()
 require"configs.lsp".config()
 require"configs.null-ls".config()

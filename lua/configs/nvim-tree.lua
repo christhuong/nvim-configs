@@ -52,7 +52,7 @@ function M.config()
     },
     view = {
       side = "left",
-      allow_resize = true,
+      allow_resize = false,
       hide_root_folder = false,
       number = false,
       relativenumber = false,
