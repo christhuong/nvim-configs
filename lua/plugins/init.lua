@@ -46,6 +46,8 @@ Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
 Plug('nvim-lualine/lualine.nvim')
 -- indentation
 Plug('lukas-reineke/indent-blankline.nvim')
+-- auto pairs
+Plug('jiangmiao/auto-pairs')
 vim.call('plug#end')
 
 require"hop".setup()
