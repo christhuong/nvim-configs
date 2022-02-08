@@ -55,9 +55,9 @@ map('n', '<silent> -', ':exe "vertical resize -10"<CR>', default_opts)
 -- terminal
 vim.opt.autowriteall = true
 map('t', 'jj', '<C-\\><C-n>', default_opts)
+map('t', 'jk', '<C-\\><C-n>', default_opts)
 -- open terminal in a v-split
 map('n', '<leader>.', ':vsplit<CR>:terminal<CR>i', default_opts)
-map('t', '<expr><ESC>.', '(&filetype == "fzf") ? "<Esc>-- : "<c-\\><c-n>"', default_opts)
 
 -- tabs mappings
 map('n', '<leader>1', '1gt', default_opts)
