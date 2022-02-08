@@ -28,10 +28,7 @@ set tabstop=2
 set termguicolors " enable true colors support
 set timeoutlen=1000 " set key map timeout to 1 second
 set ttimeoutlen=0 " set typing timeout to 0 seconds
-
-" vim notes configs
-let g:notes_directories = ['~/Documents/Notes'] " where to look for notes
-let g:notes_suffix = '.md' " note extension
+set completeopt=menuone,noselect
 
 " auto stripe white spaces
 autocmd BufWritePre * StripWhitespace
@@ -39,4 +36,8 @@ autocmd BufWritePre * StripWhitespace
 " fold with treesitter
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-set completeopt=menu,menuone,noselect
+
+" vim notes configs
+let g:notes_directories = ['~/Documents/Notes'] " where to look for notes
+let g:notes_suffix = '.md' " note extension
+

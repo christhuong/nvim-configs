@@ -20,14 +20,14 @@ function M.on_attach(client, bufnr)
 end
 
 function M.config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   require'lspconfig'.solargraph.setup{
-    on_attach = M.on_attach,
     capabilities = capabilities,
+    on_attach = M.on_attach,
   }
   require'lspconfig'.pyright.setup{
-    on_attach = M.on_attach,
     capabilities = capabilities,
+    on_attach = M.on_attach,
   }
   require'lspconfig'.tsserver.setup{
     capabilities = capabilities,
