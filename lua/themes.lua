@@ -8,9 +8,8 @@ vim.g.tokyonight_style = "night"
 vim.cmd [[ colorscheme tokyonight ]]
 
 -- fzf layout customizations
-vim.cmd [[ autocmd! FileType fzf ]]
 vim.cmd [[
-  autocmd  FileType fzf set laststatus=0 noruler
+  autocmd FileType fzf set laststatus=0 noruler
   \| autocmd BufLeave <buffer> set laststatus=2 ruler
 ]]
 vim.g.fzf_layout = { ['down'] = '~40%' }

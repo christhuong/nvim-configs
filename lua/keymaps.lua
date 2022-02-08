@@ -9,7 +9,7 @@ map('i', 'jk', '<ESC>', default_opts)
 map('i', 'jj', '<ESC>', default_opts)
 
 -- escape search highlight
-map('i', '<Esc>', ':noh<CR><ESC>', default_opts)
+map('n', '<Esc>', ':noh<CR><ESC>', default_opts)
 
 -- move codes around
 map('n', '<C-j>', ':m .+1<CR>==', default_opts)

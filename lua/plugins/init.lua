@@ -48,6 +48,8 @@ Plug('nvim-lualine/lualine.nvim')
 Plug('lukas-reineke/indent-blankline.nvim')
 -- auto pairs
 Plug('jiangmiao/auto-pairs')
+-- start up dashboard
+Plug('mhinz/vim-startify')
 vim.call('plug#end')
 
 require"hop".setup()
