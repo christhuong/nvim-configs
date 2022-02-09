@@ -8,7 +8,8 @@ function M.config()
 
   local g = vim.g
 
-  g.nvim_tree_indent_markers = 1
+  g.nvim_tree_disable_window_picker = 1
+  g.nvim_tree_respect_buf_cwd = 1
 
   g.nvim_tree_icons = {
     default = "",
@@ -35,14 +36,32 @@ function M.config()
   nvimtree.setup {
     filters = {
       dotfiles = false,
+      custom = {
+        ".git",
+        "node_modules",
+        ".cache",
+      },
+    },
+    disable_netrw = true,
+    hijack_netrw = true,
+    ignore_ft_on_setup = {
+      "dashboard",
+      "startify",
+      "alpha",
     },
     auto_close = true,
-    quit_on_open = true,
+    open_on_tab = false,
+    quit_on_open = false,
+    hijack_cursor = true,
+    hide_root_folder = true,
+    update_cwd = true,
     update_focused_file = {
       enable = true,
+      update_cwd = true,
+      ignore_list = {},
     },
     diagnostics = {
-      enable = true,
+      enable = false,
       icons = {
         hint = "",
         info = "",
@@ -51,12 +70,14 @@ function M.config()
       },
     },
     view = {
+      width = 25,
+      height = 30,
       side = "left",
-      allow_resize = false,
+      allow_resize = true,
       hide_root_folder = false,
-      number = false,
+      number = true,
       relativenumber = false,
-      signcolumn = "yes",
+      signcolumn = "no",
     },
     git = {
       enable = true,
@@ -70,6 +91,14 @@ function M.config()
       folder_arrows = 0,
       tree_width = 30,
     },
+    actions = {
+      change_dir = {
+        global = true,
+      },
+      open_file = {
+        quit_on_open = true,
+      }
+    }
   }
 end
 

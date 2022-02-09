@@ -15,7 +15,8 @@ Plug('saadparwaiz1/cmp_luasnip')
 -- syntax highlight
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 -- search files
-Plug('nvim-telescope/telescope.nvim')
+Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
+Plug('junegunn/fzf.vim')
 -- folder tree
 Plug('kyazdani42/nvim-tree.lua')
 -- file icons
@@ -57,4 +58,3 @@ require"plugins.cmp".config()
 require"plugins.gitsigns".config()
 require"plugins.indentline".config()
 require"plugins.nvim-tree".config()
-require"plugins.telescope".config()

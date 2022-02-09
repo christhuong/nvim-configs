@@ -43,22 +43,43 @@ vim.g.notes_suffix = ".md" -- note extension
 -- vim.g.tokyonight_style = "night"
 -- vim.g.tokyonight_italic_functions = 1
 -- vim.cmd [[ colorscheme tokyonight ]]
+vim.cmd [[ colorscheme ayu ]]
 vim.g.ayu_italic_comment = 1
 vim.g.ayu_sign_contrast = 1
-vim.cmd [[ colorscheme ayu ]]
+
+-- fzf layout customizations
+vim.g.fzf_layout = { ['down'] = '~40%' }
+-- fzf color customizations
+vim.cmd [[
+  let g:fzf_colors =
+    \ {
+    \ 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment']
+    \ }
+]]
 
 -------------------
 -- other configs --
 -------------------
 -- hides status bar and tabline
+-- not highlight error message at the bottom
 vim.cmd [[
   set laststatus=0 noruler
   set showtabline=0
+  highlight ErrorMsg NONE
+  highlight SignColumn guibg=NONE
 ]]
-
--- not highlight error message at the bottom
-vim.cmd [[ highlight ErrorMsg NONE ]]
-vim.cmd [[ highlight SignColumn guibg=NONE ]]
 
 -- auto stripe white spaces
 vim.cmd [[

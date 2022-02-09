@@ -11,6 +11,9 @@ map('i', 'jj', '<ESC>', default_opts)
 -- escape search highlight
 map('n', '<Esc>', ':noh<CR><ESC>', default_opts)
 
+-- quit
+map('n', '<leader>qq', ':q!<CR>', default_opts)
+
 -- move codes around
 map('n', '<C-j>', ':m .+1<CR>==', default_opts)
 map('n', '<C-k>', ':m .-2<CR>==', default_opts)
@@ -20,13 +23,18 @@ map('v', '<C-j>', ":m '>+1<CR>gv=gv", default_opts)
 map('v', '<C-k>', ":m '<-2<CR>gv=gv", default_opts)
 
 -- searching with Telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", default_opts)
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", default_opts)
-map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", default_opts)
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", default_opts)
-map("n", "<leader>oo", "<cmd>Telescope buffers<CR>", default_opts)
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", default_opts)
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", default_opts)
+map('n', '<leader>oo', ':Buffers<CR>', default_opts)
+map('n', '<leader>fs', ':GFiles?<CR>', default_opts)
+map('n', '<leader>ff', ':GFiles<CR>', default_opts)
+map('n', '<leader>fa', ':Files<CR>', default_opts)
+map('n', '<leader>fw', ':Rg<CR>', default_opts)
+map('n', '<leader>fl', ':Lines<CR>', default_opts)
+map('n', '<leader>fh', ':History<CR>', default_opts)
+vim.g.fzf_action = {
+  ['ctrl-t'] = 'tab split',
+  ['ctrl-v'] = 'vsplit',
+  ['ctrl-s'] = 'split',
+}
 
 -- split screen
 vim.opt.splitright = true

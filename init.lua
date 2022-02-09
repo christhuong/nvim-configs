@@ -1,3 +1,3 @@
-require("plugins.init")
-require("settings")
-require("keymaps")
+require"plugins.init"
+require"keymaps"
+require"settings"
