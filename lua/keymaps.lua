@@ -48,7 +48,9 @@ map('n', 'cP', ':let @* = expand("%:p")<CR>', default_opts)
 -- git commands
 map('n', '<leader>gs', ':Git<CR>', default_opts)
 map('n', '<leader>gb', ':Git blame<CR>', default_opts)
-map('n', '<leader>gd', ':Gdiff<CR>', default_opts)
+map('n', '<leader>gd', ':Gitsigns diffthis<CR>', default_opts)
+map('n', '<leader>gk', ':Gitsigns prev_hunk<CR>', default_opts)
+map('n', '<leader>gj', ':Gitsigns next_hunk<CR>', default_opts)
 
 -- easy jump
 map('n', '<leader>j', ':HopWordMW<CR>', default_opts)

@@ -49,7 +49,7 @@ function M.config()
       "startify",
       "alpha",
     },
-    auto_close = true,
+    auto_close = false,
     open_on_tab = false,
     quit_on_open = false,
     hijack_cursor = true,
@@ -92,9 +92,6 @@ function M.config()
       tree_width = 30,
     },
     actions = {
-      change_dir = {
-        global = true,
-      },
       open_file = {
         quit_on_open = true,
       }
