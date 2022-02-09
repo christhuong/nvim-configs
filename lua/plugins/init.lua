@@ -41,6 +41,7 @@ Plug('xolox/vim-misc')
 Plug('github/copilot.vim')
 -- themes
 Plug('Luxed/ayu-vim')
+Plug('arzg/vim-colors-xcode')
 Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
 -- indentation
 Plug('lukas-reineke/indent-blankline.nvim')
