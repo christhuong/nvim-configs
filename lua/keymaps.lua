@@ -4,7 +4,7 @@ local default_opts = { noremap = true, silent = true }
 -- leader key
 vim.g.mapleader = ' '
 
--- quick escape
+-- quick escape from insert mode
 map('i', 'jk', '<ESC>', default_opts)
 map('i', 'jj', '<ESC>', default_opts)
 
@@ -37,7 +37,7 @@ map('n', '<leader>s', ':split<CR>', default_opts)
 map('n', 'cp', ':let @* = expand("%")<CR>', default_opts)
 map('n', 'cP', ':let @* = expand("%:p")<CR>', default_opts)
 
--- git
+-- git commands
 map('n', '<leader>gs', ':Git<CR>', default_opts)
 map('n', '<leader>gb', ':Git blame<CR>', default_opts)
 map('n', '<leader>gd', ':Gdiff<CR>', default_opts)
@@ -53,7 +53,6 @@ map('n', '<silent> -', ':exe "vertical resize -10"<CR>', default_opts)
 vim.opt.autowriteall = true
 map('t', 'jj', '<C-\\><C-n>', default_opts)
 map('t', 'jk', '<C-\\><C-n>', default_opts)
--- open terminal in a v-split
 map('n', '<leader>.', ':vsplit<CR>:terminal<CR>i', default_opts)
 
 -- tabs mappings

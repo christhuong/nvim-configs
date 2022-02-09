@@ -14,13 +14,12 @@ Plug('L3MON4D3/LuaSnip')
 Plug('saadparwaiz1/cmp_luasnip')
 -- syntax highlight
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
--- search (requires global fzf and ripgrep)
-Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
+-- search files
 Plug('nvim-telescope/telescope.nvim')
 -- folder tree
 Plug('kyazdani42/nvim-tree.lua')
 -- file icons
-Plug ('kyazdani42/nvim-web-devicons')
+Plug('kyazdani42/nvim-web-devicons')
 -- move cursor to any position
 Plug('phaazon/hop.nvim')
 -- highlight redundant white spaces
@@ -51,11 +50,11 @@ Plug('mhinz/vim-startify')
 vim.call('plug#end')
 
 require"hop".setup()
-require"plugins.gitsigns".config()
 require"plugins.lsp".config()
-require"plugins.null-ls".config()
 require"plugins.treesitter".config()
+require"plugins.null-ls".config()
 require"plugins.cmp".config()
-require"plugins.nvim-tree".config()
+require"plugins.gitsigns".config()
 require"plugins.indentline".config()
+require"plugins.nvim-tree".config()
 require"plugins.telescope".config()

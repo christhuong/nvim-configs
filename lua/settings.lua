@@ -1,3 +1,6 @@
+------------------------------------------
+-- messy configs, will categorise later --
+------------------------------------------
 vim.opt.autoindent = true -- auto-indent
 vim.opt.background = "dark"
 vim.opt.clipboard = "unnamedplus" -- copy/paste to system clipboard
@@ -28,11 +31,15 @@ vim.opt.timeoutlen = 1000 -- set key map timeout to 1 second
 vim.opt.ttimeoutlen = 0 -- set typing timeout to 0 seconds
 vim.opt.writebackup = false -- don't write backups
 
--- vim notes configs
+-----------------------
+-- vim notes configs --
+-----------------------
 vim.g.notes_directories = { "~/Documents/Notes" } -- where to look for notes
 vim.g.notes_suffix = ".md" -- note extension
 
--- colors and theme
+-------------------------------
+-- colors and themes configs --
+-------------------------------
 -- vim.g.tokyonight_style = "night"
 -- vim.g.tokyonight_italic_functions = 1
 -- vim.cmd [[ colorscheme tokyonight ]]
@@ -40,14 +47,17 @@ vim.g.ayu_italic_comment = 1
 vim.g.ayu_sign_contrast = 1
 vim.cmd [[ colorscheme ayu ]]
 
--- hides status bar
+-------------------
+-- other configs --
+-------------------
+-- hides status bar and tabline
 vim.cmd [[
   set laststatus=0 noruler
   set showtabline=0
 ]]
 
 -- not highlight error message at the bottom
--- vim.cmd [[ highlight ErrorMsg NONE ]]
+vim.cmd [[ highlight ErrorMsg NONE ]]
 vim.cmd [[ highlight SignColumn guibg=NONE ]]
 
 -- auto stripe white spaces
