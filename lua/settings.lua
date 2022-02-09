@@ -32,6 +32,24 @@ vim.opt.writebackup = false -- don't write backups
 vim.g.notes_directories = { "~/Documents/Notes" } -- where to look for notes
 vim.g.notes_suffix = ".md" -- note extension
 
+-- colors and theme
+-- vim.g.tokyonight_style = "night"
+-- vim.g.tokyonight_italic_functions = 1
+-- vim.cmd [[ colorscheme tokyonight ]]
+vim.g.ayu_italic_comment = 1
+vim.g.ayu_sign_contrast = 1
+vim.cmd [[ colorscheme ayu ]]
+
+-- hides status bar
+vim.cmd [[
+  set laststatus=0 noruler
+  set showtabline=0
+]]
+
+-- not highlight error message at the bottom
+-- vim.cmd [[ highlight ErrorMsg NONE ]]
+vim.cmd [[ highlight SignColumn guibg=NONE ]]
+
 -- auto stripe white spaces
 vim.cmd [[
   autocmd BufWritePre * StripWhitespace

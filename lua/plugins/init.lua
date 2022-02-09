@@ -16,7 +16,7 @@ Plug('saadparwaiz1/cmp_luasnip')
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 -- search (requires global fzf and ripgrep)
 Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
-Plug('junegunn/fzf.vim')
+Plug('nvim-telescope/telescope.nvim')
 -- folder tree
 Plug('kyazdani42/nvim-tree.lua')
 -- file icons
@@ -42,8 +42,6 @@ Plug('github/copilot.vim')
 -- themes
 Plug('Luxed/ayu-vim')
 Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
--- vim status line
-Plug('nvim-lualine/lualine.nvim')
 -- indentation
 Plug('lukas-reineke/indent-blankline.nvim')
 -- auto pairs
@@ -59,5 +57,5 @@ require"plugins.null-ls".config()
 require"plugins.treesitter".config()
 require"plugins.cmp".config()
 require"plugins.nvim-tree".config()
-require"plugins.lualine".config()
 require"plugins.indentline".config()
+require"plugins.telescope".config()
