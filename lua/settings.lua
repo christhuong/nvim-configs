@@ -46,15 +46,7 @@ vim.g.notes_suffix = ".md" -- note extension
 -- vim.cmd [[ colorscheme ayu ]]
 -- vim.g.ayu_italic_comment = 1
 -- vim.g.ayu_sign_contrast = 1
-vim.cmd [[
-  colorscheme xcodedarkhc
-  augroup vim-colors-xcode
-      autocmd!
-  augroup END
-
-  autocmd vim-colors-xcode ColorScheme * hi Comment        cterm=italic gui=italic
-  autocmd vim-colors-xcode ColorScheme * hi SpecialComment cterm=italic gui=italic
-]]
+vim.cmd [[ colorscheme xcodedarkhc ]]
 
 -- fzf layout customizations
 vim.g.fzf_layout = { ['down'] = '~40%' }
