@@ -92,6 +92,9 @@ function M.config()
       tree_width = 30,
     },
     actions = {
+      change_dir = {
+        global = false,
+      },
       open_file = {
         quit_on_open = true,
       }
