@@ -23,7 +23,7 @@ map('v', '<C-j>', ":m '>+1<CR>gv=gv", default_opts)
 map('v', '<C-k>', ":m '<-2<CR>gv=gv", default_opts)
 
 -- searching with Telescope
-map('n', '<leader>oo', ':Buffers<CR>', default_opts)
+map('n', '<leader>o', ':Buffers<CR>', default_opts)
 map('n', '<leader>fs', ':GFiles?<CR>', default_opts)
 map('n', '<leader>ff', ':GFiles<CR>', default_opts)
 map('n', '<leader>fa', ':Files<CR>', default_opts)
@@ -47,10 +47,10 @@ map('n', 'cP', ':let @* = expand("%:p")<CR>', default_opts)
 
 -- git commands
 map('n', '<leader>gs', ':Git<CR>', default_opts)
-map('n', '<leader>gb', ':Git blame<CR>', default_opts)
+map('n', '<leader>gb', ':Gitsigns blame_line<CR>', default_opts)
 map('n', '<leader>gd', ':Gitsigns diffthis<CR>', default_opts)
-map('n', '<leader>gk', ':Gitsigns prev_hunk<CR>', default_opts)
-map('n', '<leader>gj', ':Gitsigns next_hunk<CR>', default_opts)
+map('n', 'gk', ':Gitsigns prev_hunk<CR>', default_opts)
+map('n', 'gj', ':Gitsigns next_hunk<CR>', default_opts)
 
 -- easy jump
 map('n', '<leader>j', ':HopWordMW<CR>', default_opts)
