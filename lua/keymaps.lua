@@ -5,14 +5,15 @@ local default_opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
 -- quick escape from insert mode
-map('i', 'jk', '<ESC>', default_opts)
-map('i', 'jj', '<ESC>', default_opts)
+map('i', 'qq', '<ESC>', default_opts)
 
 -- escape search highlight
 map('n', '<Esc>', ':noh<CR><ESC>', default_opts)
 
 -- quit
 map('n', '<leader>qq', ':q!<CR>', default_opts)
+map('n', '<leader>ww', ':w<CR>', default_opts)
+map('n', '<leader>wq', ':wq<CR>', default_opts)
 
 -- move codes around
 map('n', '<C-j>', ':m .+1<CR>==', default_opts)
@@ -56,8 +57,8 @@ map('n', 'gj', ':Gitsigns next_hunk<CR>', default_opts)
 map('n', '<leader>j', ':HopWordMW<CR>', default_opts)
 
 -- resize splits
-map('n', '<silent> =', ':exe "vertical resize +10"<CR>', default_opts)
-map('n', '<silent> -', ':exe "vertical resize -10"<CR>', default_opts)
+map('n', '=', ':exe "vertical resize +10"<CR>', default_opts)
+map('n', '-', ':exe "vertical resize -10"<CR>', default_opts)
 
 -- terminal
 vim.opt.autowriteall = true
