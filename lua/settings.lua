@@ -43,13 +43,17 @@ vim.g.notes_suffix = ".md" -- note extension
 -- vim.g.tokyonight_style = "night"
 -- vim.g.tokyonight_italic_functions = 1
 -- vim.cmd [[ colorscheme tokyonight ]]
--- vim.cmd [[ colorscheme ayu ]]
--- vim.g.ayu_italic_comment = 1
--- vim.g.ayu_sign_contrast = 1
-vim.cmd [[ colorscheme xcodedarkhc ]]
+vim.cmd [[ colorscheme ayu ]]
+vim.g.ayu_italic_comment = 1
+vim.g.ayu_sign_contrast = 1
+-- vim.cmd [[ colorscheme xcodedarkhc ]]
 
 -- fzf layout customizations
 vim.g.fzf_layout = { ['down'] = '~40%' }
+vim.cmd [[
+  autocmd FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+]]
 -- fzf color customizations
 vim.cmd [[
   let g:fzf_colors =
@@ -70,14 +74,29 @@ vim.cmd [[
     \ }
 ]]
 
+-- airline
+vim.g.airline_theme='transparent'
+vim.cmd [[
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#show_close_button = 0
+  let g:airline#extensions#tabline#fnamemod = ':t'
+  let g:airline#extensions#tabline#show_tab_count = 0
+  let g:airline#extensions#tabline#show_buffers = 0
+  let g:airline#extensions#tabline#tab_min_count = 1
+  let g:airline#extensions#tabline#show_splits = 0
+  let g:airline#extensions#tabline#show_tab_nr = 1
+  let g:airline#extensions#tabline#tab_nr_type = 1
+  let g:airline#extensions#tabline#show_tab_type = 0
+]]
+
 -------------------
 -- other configs --
 -------------------
 -- hides status bar and tabline
 -- not highlight error message at the bottom
 vim.cmd [[
-  set laststatus=0 noruler
-  set showtabline=0
+  " set laststatus=0 noruler
+  " set showtabline=0
   highlight ErrorMsg NONE
   highlight SignColumn guibg=NONE
 ]]

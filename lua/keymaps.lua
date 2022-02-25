@@ -5,7 +5,7 @@ local default_opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
 -- quick escape from insert mode
-map('i', 'qq', '<ESC>', default_opts)
+map('i', 'jj', '<ESC>', default_opts)
 
 -- escape search highlight
 map('n', '<Esc>', ':noh<CR><ESC>', default_opts)
@@ -67,13 +67,15 @@ map('t', 'jk', '<C-\\><C-n>', default_opts)
 map('n', '<leader>.', ':vsplit<CR>:terminal<CR>i', default_opts)
 
 -- tabs mappings
+map('n', 'J', 'gT', default_opts)
+map('n', 'K', 'gt', default_opts)
 map('n', '<leader>1', '1gt', default_opts)
 map('n', '<leader>2', '2gt', default_opts)
 map('n', '<leader>3', '3gt', default_opts)
 map('n', '<leader>4', '4gt', default_opts)
 map('n', '<leader>5', '5gt', default_opts)
-map('n', '<leader>n', ':tabnew<CR>', default_opts)
-map('n', '<leader>t', '<C-w>T', default_opts)
+map('n', '<leader>t', ':tabnew<CR>', default_opts)
+map('n', '<C-t>', '<C-w>T', default_opts)
 
 -- nvimtree
 map('n', '<leader>m', ':NvimTreeToggle<CR>', default_opts)

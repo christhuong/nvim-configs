@@ -49,6 +49,9 @@ Plug('lukas-reineke/indent-blankline.nvim')
 Plug('jiangmiao/auto-pairs')
 -- start up dashboard
 Plug('mhinz/vim-startify')
+-- vim status line
+Plug('vim-airline/vim-airline')
+Plug('vim-airline/vim-airline-themes')
 vim.call('plug#end')
 
 require"hop".setup()
