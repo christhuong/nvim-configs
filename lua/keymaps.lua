@@ -6,6 +6,7 @@ vim.g.mapleader = ' '
 
 -- quick escape from insert mode
 map('i', 'jj', '<ESC>', default_opts)
+map('i', 'jk', '<ESC>', default_opts)
 
 -- escape search highlight
 map('n', '<Esc>', ':noh<CR><ESC>', default_opts)
@@ -74,9 +75,16 @@ map('n', '<leader>2', '2gt', default_opts)
 map('n', '<leader>3', '3gt', default_opts)
 map('n', '<leader>4', '4gt', default_opts)
 map('n', '<leader>5', '5gt', default_opts)
+map('n', '<leader>6', '6gt', default_opts)
+map('n', '<leader>7', '7gt', default_opts)
+map('n', '<leader>8', '8gt', default_opts)
+map('n', '<leader>9', '9gt', default_opts)
 map('n', '<leader>t', ':tabnew<CR>', default_opts)
 map('n', '<C-t>', '<C-w>T', default_opts)
 
 -- nvimtree
 map('n', '<leader>m', ':NvimTreeToggle<CR>', default_opts)
 map('n', '<leader>r', ':NvimTreeFindFile<CR>', default_opts)
+
+-- formatting
+map('n', '<leader>p', ':!eslint_d % --fix<CR>', default_opts)
