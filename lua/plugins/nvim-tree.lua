@@ -8,7 +8,6 @@ function M.config()
 
   local g = vim.g
 
-  g.nvim_tree_disable_window_picker = 1
   g.nvim_tree_respect_buf_cwd = 1
 
   g.nvim_tree_icons = {
