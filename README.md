@@ -1,6 +1,6 @@
-# vim-configs
+# nvim-configs
 
-⚡️ My vim configs as a simple editor ⚡️
+⚡️ My nvim configs as a simple editor ⚡️
 
 ## Install
 
@@ -10,16 +10,16 @@ Clone this repo to your nvim configs folder
 git clone git@github.com:christhuong/nvim-configs.git ~/.config/nvim
 ```
 
-Install vim-plug then install plugins
+Install vim-plug then using vim-plug to install plugins
 
 ```shell
 :PlugInstall
 ```
 
-Install neccessary LSP
+Modify and install neccessary LSPs. 
+The default configs require `pyright` for python, `eslint_d` and `tsserver` for typescript and `solargraph` for ruby.
 
 ```shell
-npm i -g pyright
 npm i -g pyright
 npm install -g eslint_d
 npm install -g typescript typescript-language-server
