@@ -65,7 +65,7 @@ map('n', '-', ':exe "vertical resize -10"<CR>', default_opts)
 vim.opt.autowriteall = true
 map('t', 'jj', '<C-\\><C-n>', default_opts)
 map('t', 'jk', '<C-\\><C-n>', default_opts)
-map('n', '<leader>.', ':vsplit<CR>:terminal<CR>i', default_opts)
+map('n', '<leader>.', ':vs +term<CR>i', default_opts)
 
 -- tabs mappings
 map('n', 'J', 'gT', default_opts)
