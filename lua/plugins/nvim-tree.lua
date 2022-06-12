@@ -6,33 +6,33 @@ function M.config()
     return
   end
 
-  local g = vim.g
-
-  g.nvim_tree_respect_buf_cwd = 1
-
-  g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-      deleted = "",
-      ignored = "◌",
-      renamed = "➜",
-      staged = "✓",
-      unmerged = "",
-      unstaged = "✗",
-      untracked = "★",
-    },
-    folder = {
-      default = "",
-      empty = "",
-      empty_open = "",
-      open = "",
-      symlink = "",
-      symlink_open = "",
-    },
-  }
-
   nvimtree.setup {
+    respect_buf_cwd = true,
+    renderer = {
+      icons = {
+        glyphs = {
+          default = "",
+          symlink = "",
+          git = {
+            deleted = "",
+            ignored = "◌",
+            renamed = "➜",
+            staged = "✓",
+            unmerged = "",
+            unstaged = "✗",
+            untracked = "★",
+          },
+          folder = {
+            default = "",
+            empty = "",
+            empty_open = "",
+            open = "",
+            symlink = "",
+            symlink_open = "",
+          },
+        }
+      }
+    },
     filters = {
       dotfiles = false,
       custom = {
