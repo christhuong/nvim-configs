@@ -49,7 +49,7 @@ map('n', 'cP', ':let @* = expand("%:p")<CR>', default_opts)
 
 -- git commands
 map('n', '<leader>gs', ':Git<CR>', default_opts)
-map('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<CR>', default_opts)
+map('n', '<leader>glb', ':Gitsigns toggle_current_line_blame<CR>', default_opts)
 map('n', '<leader>gd', ':Gitsigns diffthis<CR>', default_opts)
 map('n', 'gk', ':Gitsigns prev_hunk<CR>', default_opts)
 map('n', 'gj', ':Gitsigns next_hunk<CR>', default_opts)

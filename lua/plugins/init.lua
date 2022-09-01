@@ -34,6 +34,8 @@ Plug('tpope/vim-fugitive')
 -- show git changes
 Plug('nvim-lua/plenary.nvim')
 Plug('lewis6991/gitsigns.nvim')
+-- open git links
+Plug('ruanyl/vim-gh-line')
 -- take simple notes
 Plug('xolox/vim-notes')
 Plug('xolox/vim-misc')
