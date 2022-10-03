@@ -66,8 +66,6 @@ function M.config()
       },
     },
     view = {
-      width = 25,
-      height = 30,
       side = "left",
       hide_root_folder = false,
       number = true,
