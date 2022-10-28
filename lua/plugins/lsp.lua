@@ -33,7 +33,7 @@ function M.config()
     -- on_attach = M.on_attach,
     on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
-      client.resolved_capabilities.document_range_formatting = false
+      client.server_capabilities.document_range_formatting = false
       M.on_attach(client, bufnr)
     end
   }
