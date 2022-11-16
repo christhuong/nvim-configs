@@ -44,11 +44,11 @@ vim.g.notes_suffix = ".md" -- note extension
 -- vim.g.tokyonight_italic_functions = 1
 -- vim.cmd [[ colorscheme tokyonight ]]
 -- vim.g.ayucolor = "light"
--- vim.g.ayucolor = "mirage"
--- vim.cmd [[ colorscheme ayu ]]
--- vim.g.ayu_italic_comment = 1
--- vim.g.ayu_sign_contrast = 1
-vim.cmd [[ colorscheme xcodedarkhc ]]
+vim.g.ayucolor = "dark"
+vim.cmd [[ colorscheme ayu ]]
+vim.g.ayu_italic_comment = 1
+vim.g.ayu_sign_contrast = 1
+-- vim.cmd [[ colorscheme xcodedarkhc ]]
 -- vim.cmd [[ colorscheme xcodelight ]]
 
 -- fzf layout customizations

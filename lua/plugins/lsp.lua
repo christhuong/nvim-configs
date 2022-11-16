@@ -14,7 +14,8 @@ function M.on_attach(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>p', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   if client.server_capabilities.documentFormattingProvider then
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format { async = true }")
   end
 end
 
