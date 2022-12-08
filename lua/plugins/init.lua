@@ -54,6 +54,8 @@ Plug('mhinz/vim-startify')
 -- vim status line
 Plug('vim-airline/vim-airline')
 Plug('vim-airline/vim-airline-themes')
+-- colors
+Plug('norcalli/nvim-colorizer.lua')
 vim.call('plug#end')
 
 require"hop".setup()
@@ -64,3 +66,6 @@ require"plugins.cmp".config()
 require"plugins.gitsigns".config()
 require"plugins.indentline".config()
 require"plugins.nvim-tree".config()
+
+vim.opt.termguicolors = true -- enable true colors support for colorizer
+require'colorizer'.setup()
