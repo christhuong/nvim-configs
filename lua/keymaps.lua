@@ -24,7 +24,7 @@ map('i', '<C-k>', '<ESC>:m .-2<CR>==gi', default_opts)
 map('v', '<C-j>', ":m '>+1<CR>gv=gv", default_opts)
 map('v', '<C-k>', ":m '<-2<CR>gv=gv", default_opts)
 
--- searching with Telescope
+-- searching with fzf
 map('n', '<leader>o', ':Buffers<CR>', default_opts)
 map('n', '<leader>fs', ':GFiles?<CR>', default_opts)
 map('n', '<leader>ff', ':GFiles<CR>', default_opts)
@@ -80,7 +80,7 @@ map('n', '<leader>7', '7gt', default_opts)
 map('n', '<leader>8', '8gt', default_opts)
 map('n', '<leader>9', '9gt', default_opts)
 map('n', '<leader>t', ':tabnew<CR>', default_opts)
-map('n', '<C-t>', '<C-w>T', default_opts)
+map('n', '<C-t>', '<C-w>T', default_opts) -- open slit into new tab
 
 -- nvimtree
 map('n', '<leader>m', ':NvimTreeToggle<CR>', default_opts)
@@ -92,6 +92,7 @@ map('n', '<leader>p', ':!yarn eslint %:p --fix<CR>', default_opts)
 -- commands
 local create_user_command = vim.api.nvim_create_user_command
 
+create_user_command('Cdeh', ':e ~/eh', {})
 create_user_command('Cdfrontendcore', ':e ~/eh/frontend-core', {})
 create_user_command('Cdemploymenthero', ':e ~/eh/employment-hero', {})
 create_user_command('Cdnvim', ':e ~/.config/nvim', {})

@@ -6,6 +6,11 @@ function M.config()
     return
   end
 
+  local screen_w = vim.opt.columns:get()
+  local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+  local width = math.floor(screen_w)
+  local height = math.floor(screen_h)
+
   nvimtree.setup {
     respect_buf_cwd = true,
     renderer = {
@@ -57,7 +62,7 @@ function M.config()
       ignore_list = {},
     },
     diagnostics = {
-      enable = false,
+      enable = true,
       icons = {
         hint = "",
         info = "",
@@ -66,7 +71,18 @@ function M.config()
       },
     },
     view = {
-      side = "left",
+      width = width,
+      -- float = {
+      --   enable = true,
+      --   quit_on_focus_loss = true,
+      --   open_win_config = {
+      --     width = width,
+      --     height = height,
+      --     relative = "editor",
+      --   }
+      -- },
+      adaptive_size = true,
+      preserve_window_proportions = true,
       hide_root_folder = false,
       number = true,
       relativenumber = false,
