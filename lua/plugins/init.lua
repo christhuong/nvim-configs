@@ -40,7 +40,7 @@ Plug('ruanyl/vim-gh-line')
 Plug('xolox/vim-notes')
 Plug('xolox/vim-misc')
 -- code suggestions from Github
--- Plug('github/copilot.vim')
+Plug('github/copilot.vim')
 -- themes
 Plug('Luxed/ayu-vim')
 Plug('arzg/vim-colors-xcode')

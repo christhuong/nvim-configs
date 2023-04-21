@@ -48,11 +48,6 @@ function M.config()
     },
     disable_netrw = true,
     hijack_netrw = true,
-    ignore_ft_on_setup = {
-      "dashboard",
-      "startify",
-      "alpha",
-    },
     open_on_tab = false,
     hijack_cursor = true,
     update_cwd = true,
