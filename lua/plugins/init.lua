@@ -44,7 +44,7 @@ Plug('github/copilot.vim')
 -- themes
 Plug('Luxed/ayu-vim')
 Plug('arzg/vim-colors-xcode')
-Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
+Plug('folke/tokyonight.nvim', { branch = 'main' })
 -- auto pairs
 Plug('jiangmiao/auto-pairs')
 -- start up dashboard
@@ -52,6 +52,8 @@ Plug('mhinz/vim-startify')
 -- vim status line
 Plug('vim-airline/vim-airline')
 Plug('vim-airline/vim-airline-themes')
+-- indent lines
+Plug("lukas-reineke/indent-blankline.nvim", { main = 'ibl', opts = {} })
 -- colors
 Plug('norcalli/nvim-colorizer.lua')
 -- running tests
@@ -65,6 +67,18 @@ require"plugins.null-ls".config()
 require"plugins.cmp".config()
 require"plugins.gitsigns".config()
 require"plugins.nvim-tree".config()
+local highlight = {
+  "CursorColumn",
+  "Whitespace",
+}
+require("ibl").setup {
+  indent = { highlight = highlight, char = "" },
+  whitespace = {
+    highlight = highlight,
+    remove_blankline_trail = false,
+  },
+  scope = { enabled = false },
+}
 
 vim.opt.termguicolors = true -- enable true colors support for colorizer
 require'colorizer'.setup()
