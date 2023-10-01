@@ -2,6 +2,7 @@
 -- vim.g.tokyonight_italic_functions = 1
 -- vim.cmd [[ colorscheme tokyonight ]]
 -- vim.g.ayucolor = "light"
+-- vim.g.ayucolor = "mirage"
 vim.g.ayucolor = "dark"
 vim.cmd [[ colorscheme ayu ]]
 vim.g.ayu_italic_comment = 1

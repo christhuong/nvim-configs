@@ -45,8 +45,6 @@ Plug('github/copilot.vim')
 Plug('Luxed/ayu-vim')
 Plug('arzg/vim-colors-xcode')
 Plug('folke/tokyonight.nvim', { ['branch'] = 'main' })
--- indentation
-Plug('lukas-reineke/indent-blankline.nvim')
 -- auto pairs
 Plug('jiangmiao/auto-pairs')
 -- start up dashboard
@@ -56,6 +54,8 @@ Plug('vim-airline/vim-airline')
 Plug('vim-airline/vim-airline-themes')
 -- colors
 Plug('norcalli/nvim-colorizer.lua')
+-- running tests
+Plug('vim-test/vim-test')
 vim.call('plug#end')
 
 require"hop".setup()
@@ -64,7 +64,6 @@ require"plugins.treesitter".config()
 require"plugins.null-ls".config()
 require"plugins.cmp".config()
 require"plugins.gitsigns".config()
-require"plugins.indentline".config()
 require"plugins.nvim-tree".config()
 
 vim.opt.termguicolors = true -- enable true colors support for colorizer

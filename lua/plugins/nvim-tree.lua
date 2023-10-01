@@ -53,7 +53,7 @@ function M.config()
     update_cwd = true,
     update_focused_file = {
       enable = true,
-      update_cwd = true,
+      update_cwd = false,
       ignore_list = {},
     },
     diagnostics = {
@@ -78,7 +78,6 @@ function M.config()
       -- },
       adaptive_size = true,
       preserve_window_proportions = true,
-      hide_root_folder = false,
       number = true,
       relativenumber = false,
       signcolumn = "no",
