@@ -41,6 +41,6 @@ vim.g.notes_suffix = ".md" -- note extension
 -- auto commands --
 -----------------------
 -- auto stripe white spaces
-vim.cmd [[
-  autocmd BufWritePre * StripWhitespace
-]]
+-- vim.cmd [[
+--   autocmd BufWritePre * StripWhitespace
+-- ]]

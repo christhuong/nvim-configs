@@ -67,16 +67,8 @@ vim.call('plug#end')
 require"hop".setup()
 require'colorizer'.setup()
 
-local highlight = {
-  "CursorColumn",
-  "Whitespace",
-}
 require("ibl").setup {
-  indent = { highlight = highlight, char = "" },
-  whitespace = {
-    highlight = highlight,
-    remove_blankline_trail = false,
-  },
+  indent = { char = "▏" },
   scope = { enabled = false },
 }
 
@@ -107,20 +99,23 @@ for _, server in pairs({ 'eslint', 'tsserver' }) do
   })
 end
 
-local formatter_prettier = { require('formatter.defaults.prettier') }
 require("formatter").setup({
+  logging = false,
+  log_level = vim.log.levels.WARN,
   filetype = {
-    javascript      = formatter_prettier,
-    javascriptreact = formatter_prettier,
-    typescript      = formatter_prettier,
-    typescriptreact = formatter_prettier,
-  }
+    lua = { require("formatter.filetypes.lua").stylua },
+    javascript = { require("formatter.filetypes.javascript").prettier },
+    javascriptreact = { require("formatter.filetypes.javascript").prettier },
+    typescript = { require("formatter.filetypes.typescript").prettier },
+    typescriptreact = { require("formatter.filetypes.typescript").prettier },
+    json = { require("formatter.filetypes.json").prettier },
+  },
 })
-vim.api.nvim_create_augroup('BufWritePreFormatter', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
+vim.api.nvim_create_augroup('BufWritePostFormatter', {})
+vim.api.nvim_create_autocmd('BufWritePost', {
   command = 'FormatWrite',
-  group = 'BufWritePreFormatter',
-  pattern = { '*.js', '*.jsx', '*.ts', '*.tsx' },
+  group = 'BufWritePostFormatter',
+  pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json' },
 })
 
 -- end of configuring language server -->

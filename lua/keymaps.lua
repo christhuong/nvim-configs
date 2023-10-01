@@ -88,6 +88,7 @@ map('n', '<leader>r', ':NvimTreeFindFile<CR>', default_opts)
 
 -- formatting
 -- map('n', '<leader>p', ':silent exec "!yarn eslint %:p --fix"<CR>', default_opts)
+map('n', '<leader>p', ':FormatWrite<CR>', default_opts)
 
 -- commands
 local create_user_command = vim.api.nvim_create_user_command
