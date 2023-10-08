@@ -37,6 +37,9 @@ vim.opt.writebackup = false -- don't write backups
 vim.g.notes_directories = { "~/Documents/Notes" } -- where to look for notes
 vim.g.notes_suffix = ".md" -- note extension
 
+-- fzf
+vim.g.fzf_history_dir = "~/.local/share/fzf-history"
+
 -----------------------
 -- auto commands --
 -----------------------

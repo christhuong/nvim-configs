@@ -6,7 +6,6 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- lsp
 Plug('neovim/nvim-lspconfig')
 Plug('mhartington/formatter.nvim')
--- Plug('jose-elias-alvarez/null-ls.nvim')
 -- code completion
 Plug('hrsh7th/cmp-nvim-lsp')
 Plug('hrsh7th/cmp-buffer')
@@ -92,7 +91,7 @@ end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspconfig = require('lspconfig')
-for _, server in pairs({ 'eslint', 'tsserver' }) do
+for _, server in pairs({ 'eslint', 'tsserver', 'solargraph' }) do
   lspconfig[server].setup({
     capabilities = lsp_capabilities,
     on_attach = lsp_on_attach,
