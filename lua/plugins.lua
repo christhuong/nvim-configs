@@ -91,12 +91,26 @@ end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspconfig = require('lspconfig')
-for _, server in pairs({ 'eslint', 'tsserver', 'solargraph' }) do
+for _, server in pairs({ 'tsserver', 'solargraph' }) do
   lspconfig[server].setup({
     capabilities = lsp_capabilities,
     on_attach = lsp_on_attach,
   })
 end
+lspconfig.eslint.setup({
+  capabilities = lsp_capabilities,
+  on_attach = function(client, bufnr)
+    lsp_on_attach(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+  settings = {
+    workingDirectory = { mode = 'location' },
+  },
+  root_dir = lspconfig.util.find_git_ancestor
+})
 
 require("formatter").setup({
   logging = false,
