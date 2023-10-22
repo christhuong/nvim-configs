@@ -253,6 +253,14 @@ require"nvim-tree".setup({
     number = true,
     relativenumber = false,
     signcolumn = "no",
+    -- float = {
+    --   enable = true,
+      -- open_win_config = {
+      --   relative = "editor",
+      --   width = width,
+      --   height = height,
+      -- }
+    -- }
   },
   git = {
     enable = true,

@@ -12,16 +12,18 @@ vim.g.ayu_extended_palette = 1
 -- vim.cmd [[ colorscheme xcodelight ]]
 
 -- fzf layout customizations
--- vim.g.fzf_layout = { ['down'] = '~110%' }
-vim.g.fzf_layout = { ['window'] = { ['width'] = 1, ['height'] = 1 } }
+-- vim.g.fzf_layout = { ['window'] = { ['width'] = 1, ['height'] = 1 } }
+vim.g.fzf_layout = { ['window'] = { ['width'] = 1, ['height'] = 1, ['border'] = 'none' } }
 
 vim.cmd [[
   autocmd FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 ]]
-vim.g.fzf_preview_window = '' -- hide preview window
+-- vim.g.fzf_preview_window = '' -- hide preview window
+vim.g.fzf_preview_window = {'right:30%', 'ctrl-/'} -- show preview window
 -- fzf color customizations
 vim.cmd [[
+  let $FZF_DEFAULT_OPTS="--preview-window=noborder"
   let g:fzf_colors =
     \ {
     \ 'fg':      ['fg', 'Normal'],
