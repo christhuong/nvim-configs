@@ -16,7 +16,7 @@ vim.opt.lazyredraw = true -- faster scrolling
 vim.opt.mouse = "a" -- mouse support
 vim.opt.number = true -- show line numbers
 vim.opt.regexpengine = 0
-vim.opt.rnu = true -- show relative number
+vim.opt.rnu = false -- show relative number
 vim.opt.shiftwidth = 2 -- even if there are tabs, preview as 2 spaces
 vim.opt.showmatch = true -- highlight matching parenthesis
 vim.opt.showmode = false -- get rid of -- INSERT -- line
@@ -44,6 +44,7 @@ vim.g.fzf_history_dir = "~/.local/share/fzf-history"
 -- auto commands --
 -----------------------
 -- auto stripe white spaces
--- vim.cmd [[
---   autocmd BufWritePre * StripWhitespace
--- ]]
+-- autocmd BufWritePre * StripWhitespace
+vim.cmd [[
+  autocmd TermOpen * setlocal nonumber norelativenumber
+]]

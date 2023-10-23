@@ -227,7 +227,7 @@ require"nvim-tree".setup({
       ".cache",
     },
   },
-  disable_netrw = true,
+  disable_netrw = false,
   hijack_netrw = true,
   open_on_tab = false,
   hijack_cursor = true,
