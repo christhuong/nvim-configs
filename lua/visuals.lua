@@ -55,6 +55,25 @@ vim.cmd [[
   let g:airline#extensions#tabline#show_tab_nr = 1
   let g:airline#extensions#tabline#tab_nr_type = 1
   let g:airline#extensions#tabline#show_tab_type = 0
+  let g:airline#extensions#tabline#formatter = 'jsformatter' " f/p/file-name.js
+
+  let g:airline_section_x = ''
+  let g:airline_section_y = ''
+  let g:airline_section_z = ''
+  let g:airline_section_error = ''
+  let g:airline_section_warning = ''
+
+  " powerline symbols
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_left_sep = '·'
+  let g:airline_left_alt_sep = '·'
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.dirty='✗'
 ]]
 
 -- hides status bar and tabline
