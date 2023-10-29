@@ -56,8 +56,6 @@ Plug('vim-airline/vim-airline-themes')
 Plug("lukas-reineke/indent-blankline.nvim", { main = 'ibl', opts = {} })
 -- colors
 Plug('norcalli/nvim-colorizer.lua')
--- running tests
-Plug('vim-test/vim-test')
 vim.call('plug#end')
 
 
