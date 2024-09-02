@@ -30,6 +30,7 @@ map('n', '<leader>fs', ':GFiles?<CR>', default_opts)
 map('n', '<leader>ff', ':GFiles<CR>', default_opts)
 map('n', '<leader>fa', ':Files<CR>', default_opts)
 map('n', '<leader>fw', ':Rg<CR>', default_opts)
+map('n', '<leader>fc', ':Rg <C-R><C-W><CR>', default_opts)
 map('n', '<leader>fl', ':Lines<CR>', default_opts)
 map('n', '<leader>fh', ':History<CR>', default_opts)
 vim.g.fzf_action = {

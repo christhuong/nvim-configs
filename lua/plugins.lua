@@ -104,10 +104,10 @@ lspconfig.eslint.setup({
       command = "EslintFixAll",
     })
   end,
-  settings = {
-    workingDirectory = { mode = 'location' },
-  },
-  root_dir = lspconfig.util.find_git_ancestor
+  -- settings = {
+  --   workingDirectory = { mode = 'location' },
+  -- },
+  -- root_dir = lspconfig.util.find_git_ancestor
 })
 
 require("formatter").setup({
@@ -162,25 +162,6 @@ require"nvim-treesitter.configs".setup {
 
 -- <-- start configuring git signs
 
--- require"gitsigns".setup({
---   signs = {
---     add = { hl = "GitSignsAdd", text = "▎", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
---     change = { hl = "GitSignsChange", text = "▎", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
---     delete = { hl = "GitSignsDelete", text = "▎", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
---     topdelete = {
---       hl = "GitSignsDelete",
---       text = "契",
---       numhl = "GitSignsDeleteNr",
---       linehl = "GitSignsDeleteLn",
---     },
---     changedelete = {
---       hl = "GitSignsChange",
---       text = "▎",
---       numhl = "GitSignsChangeNr",
---       linehl = "GitSignsChangeLn",
---     },
---   },
--- })
 require('gitsigns').setup {
   signs = {
     add          = { text = '┃' },
