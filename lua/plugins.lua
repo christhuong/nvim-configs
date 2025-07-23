@@ -40,7 +40,7 @@ Plug('ruanyl/vim-gh-line')
 Plug('xolox/vim-notes')
 Plug('xolox/vim-misc')
 -- code suggestions from Github
-Plug('github/copilot.vim')
+-- Plug('github/copilot.vim')
 -- themes
 Plug('Luxed/ayu-vim')
 Plug('arzg/vim-colors-xcode')
@@ -52,8 +52,6 @@ Plug('mhinz/vim-startify')
 -- vim status line
 Plug('vim-airline/vim-airline')
 Plug('vim-airline/vim-airline-themes')
--- indent lines
-Plug("lukas-reineke/indent-blankline.nvim", { main = 'ibl', opts = {} })
 -- colors
 Plug('norcalli/nvim-colorizer.lua')
 vim.call('plug#end')
@@ -64,16 +62,13 @@ vim.call('plug#end')
 require"hop".setup()
 require'colorizer'.setup()
 
-require("ibl").setup {
-  indent = { char = "▏" },
-  scope = { enabled = false },
-}
-
 -- <-- start configuring language server
 
 local lsp_on_attach = function (client, bufnr)
+  -- Correctly disable formatting capabilities
   client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.document_range_formatting = false
+  client.server_capabilities.documentRangeFormattingProvider = false
+
   local opts = { noremap = true, silent = true }
   vim.api.nvim_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
@@ -87,14 +82,16 @@ local lsp_on_attach = function (client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end
 
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
-for _, server in pairs({ 'tsserver' }) do
-  lspconfig[server].setup({
-    capabilities = lsp_capabilities,
-    on_attach = lsp_on_attach,
-  })
-end
+
+-- Ensure ts_ls is set up correctly
+lspconfig.ts_ls.setup({
+  capabilities = lsp_capabilities,
+  on_attach = lsp_on_attach,
+})
+
+-- ESLint setup remains the same
 lspconfig.eslint.setup({
   capabilities = lsp_capabilities,
   on_attach = function(client, bufnr)
@@ -104,10 +101,6 @@ lspconfig.eslint.setup({
       command = "EslintFixAll",
     })
   end,
-  -- settings = {
-  --   workingDirectory = { mode = 'location' },
-  -- },
-  -- root_dir = lspconfig.util.find_git_ancestor
 })
 
 require("formatter").setup({
