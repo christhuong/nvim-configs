@@ -1,68 +1,71 @@
 # ⚡️ My Neovim Setup – Simple, Clean, and Code-First ⚡️
 
-## 📦 Installation
-
-### 1. Prerequisites
-
-**Install Neovim**
+## Getting ready
 
 ```bash
-brew install neovim
+brew install neovim fzf ripgrep
 ```
-
-**Install fzf and ripgrep**
-
-```bash
-brew install fzf ripgrep
-```
-
-### 2. Clone Configuration
 
 ```bash
 mv ~/.config/nvim ~/.config/nvim.backup
 git clone git@github.com:christhuong/nvim-configs.git ~/.config/nvim
 ```
 
-### 3. Install Language Servers & Tools
-
-**TypeScript/JavaScript**
-
 ```bash
-npm install -g typescript typescript-language-server
-npm install -g eslint_d
-npm install -g prettier
+npm install -g typescript typescript-language-server vscode-langservers-extracted
+npm install -g eslint prettier
 ```
 
-**Additional LSP servers (optional)**
-
 ```bash
-# Ruby
 gem install solargraph
 ```
 
-### 4. First Launch
-
-1. **Start Neovim**: `nvim`
-2. **Install plugins**: Lazy.nvim will automatically install all plugins on first launch
-3. **Install TreeSitter parsers**:
-   ```vim
-   :TSInstall typescript javascript python lua json css html vim ruby
-   ```
-4. **Restart Neovim** to ensure everything loads correctly
+```vim
+:TSInstall typescript javascript python lua json css html vim ruby
+```
 
 ## 🎯 Cheatsheet
 
 ### Basic Vim Navigation
 
-| Key             | Action                  |
-| --------------- | ----------------------- |
-| `h j k l`       | Move left/down/up/right |
-| `w b`           | Word forward/backward   |
-| `0 $`           | Start/end of line       |
-| `gg G`          | First/last line         |
-| `{ }`           | Paragraph up/down       |
-| `Ctrl+u Ctrl+d` | Half page up/down       |
-| `Ctrl+b Ctrl+f` | Full page up/down       |
+| Key             | Action                    |
+| --------------- | ------------------------- |
+| `h j k l`       | Move left/down/up/right   |
+| `w b`           | Word forward/backward     |
+| `0 $`           | Start/end of line         |
+| `gg G`          | First/last line           |
+| `{ }`           | Paragraph up/down         |
+| `Ctrl+u Ctrl+d` | Half page up/down         |
+| `Ctrl+b Ctrl+f` | Full page up/down         |
+| `Ctrl+e`        | Scroll down               |
+| `Ctrl+o`        | Jump to previous location |
+| `Ctrl+i`        | Jump to next location     |
+
+### Advanced Movement
+
+| Key       | Action                       |
+| --------- | ---------------------------- |
+| `gi`      | Go to last insertion point   |
+| `g;`      | Go to next change            |
+| `g,`      | Go to previous change        |
+| `f<char>` | Find character after cursor  |
+| `t<char>` | Move to before char          |
+| `F<char>` | Find character before cursor |
+| `;`       | Repeat last f/t/F/T          |
+| `,`       | Reverse last f/t/F/T         |
+| `[m`      | Move to start of method      |
+| `]m`      | Move to end of method        |
+| `%`       | Jump to matching bracket     |
+
+### Opening Files & History
+
+| Key                    | Action                 |
+| ---------------------- | ---------------------- |
+| `gf`                   | Open file under cursor |
+| `gx`                   | Open link under cursor |
+| `q/`                   | Open search history    |
+| `q:`                   | Open command history   |
+| `Ctrl+f` (in cmd mode) | Open command history   |
 
 ### Essential Vim Commands
 
@@ -77,6 +80,54 @@ gem install solargraph
 | `d`        | Delete (cut)               |
 | `u Ctrl+r` | Undo/redo                  |
 | `.`        | Repeat last command        |
+| `@:`       | Repeat last command        |
+| `@@`       | Repeat last repeat         |
+
+### Text Formatting & Manipulation
+
+| Key/Command        | Action                             |
+| ------------------ | ---------------------------------- |
+| `guiw`             | Lowercase current word             |
+| `gUiw`             | UPPERCASE current word             |
+| `:sort` / `:sort!` | Sort lines ascending/descending    |
+| `:%s/old/new/g`    | Replace all occurrences            |
+| `:&&`              | Repeat last substitute             |
+| `:~`               | Repeat substitute with new pattern |
+
+### Line Operations
+
+| Command    | Action                          |
+| ---------- | ------------------------------- |
+| `:1,40d`   | Delete lines 1-40               |
+| `:2,$d`    | Delete from line 2 to end       |
+| `:.,$d`    | Delete from current line to end |
+| `:%d`      | Delete all lines                |
+| `:.,.+10d` | Delete current line + next 10   |
+
+### Insert Mode Shortcuts
+
+| Key            | Action                       |
+| -------------- | ---------------------------- |
+| `Ctrl+a`       | Insert last inserted text    |
+| `Ctrl+h`       | Delete character (backspace) |
+| `Ctrl+w`       | Delete current word          |
+| `Ctrl+u`       | Delete to start of line      |
+| `Ctrl+t`       | Add indentation              |
+| `Ctrl+d`       | Remove indentation           |
+| `Ctrl+o`       | Normal mode for one command  |
+| `Ctrl+r <reg>` | Paste from register          |
+| `Ctrl+r =`     | Calculate and insert result  |
+| `Ctrl+v`       | Insert literal character     |
+
+### Visual Mode Operations
+
+| Key       | Action                           |
+| --------- | -------------------------------- |
+| `Ctrl+v`  | Switch to block visual mode      |
+| `Shift+v` | Switch to line visual mode       |
+| `U`       | Uppercase selection              |
+| `R` / `S` | Delete selection and insert      |
+| `I`       | Insert at beginning of each line |
 
 ### Custom Keybindings (Leader = Space)
 
@@ -184,6 +235,53 @@ gem install solargraph
 | `Enter`      | Confirm selection      |
 | `Shift+Tab`  | Expand snippet or jump |
 
+### Folding
+
+| Key  | Action                |
+| ---- | --------------------- |
+| `zi` | Toggle folding        |
+| `zo` | Open fold             |
+| `zc` | Close fold            |
+| `za` | Toggle fold           |
+| `zM` | Close all folds       |
+| `zR` | Open all folds        |
+| `[z` | Move to start of fold |
+| `]z` | Move to end of fold   |
+
+### Vim-Surround (Plugin)
+
+| Key    | Action                      |
+| ------ | --------------------------- |
+| `cs'"` | Change surrounding ' to "   |
+| `ds'`  | Delete surrounding '        |
+| `yss)` | Surround entire line with)  |
+| `yspt` | Surround paragraph with tag |
+
+### Abbreviations
+
+| Command             | Action                    |
+| ------------------- | ------------------------- |
+| `:ab <abbr> <word>` | Add abbreviation          |
+| `:una <abbr>`       | Remove abbreviation       |
+| `:abc`              | Remove all abbreviations  |
+| `Ctrl+v` (insert)   | Don't expand abbreviation |
+
+### Shell Integration
+
+| Command/Key     | Action                       |
+| --------------- | ---------------------------- |
+| `:r! <command>` | Insert command output        |
+| `!!<command>`   | Replace line with cmd output |
+| `:read! <cmd>`  | Insert shell command output  |
+
+### Advanced Commands
+
+| Command         | Action                   |
+| --------------- | ------------------------ |
+| `Ctrl+r/Ctrl+t` | Navigate command matches |
+| `:tabonly`      | Close all other tabs     |
+| `%` (filename)  | Represents current file  |
+
 ### Plugin-Specific
 
 #### TreeSitter
@@ -249,31 +347,3 @@ gem install solargraph
 - **Key mappings**: Edit `lua/keymaps.lua`
 - **Plugin configs**: Edit `lua/plugins.lua`
 - **Neovim settings**: Edit `lua/settings.lua`
-
-## 🔧 Troubleshooting
-
-**Plugins not loading?**
-
-```vim
-:Lazy sync
-```
-
-**LSP not working?**
-
-```vim
-:checkhealth lsp
-```
-
-**Icons not showing?**
-
-- Install a Nerd Font and set it in your terminal
-
-**FZF commands not found?**
-
-```bash
-brew install fzf ripgrep
-```
-
-## 🤝 Credits
-
-Original inspiration from [AstroVim](https://github.com/kabinspace/AstroVim) and various community configurations.
