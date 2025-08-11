@@ -322,7 +322,8 @@ require("lazy").setup({
       "NvimTreeFindFileToggle",
       "NvimTreeResize",
       "NvimTreeCollapse",
-      "NvimTreeCollapseKeepBuffers"
+      "NvimTreeCollapseKeepBuffers",
+      "NvimTreeDiagnosticHintIcon"
     },
     keys = {
       { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file tree" },
