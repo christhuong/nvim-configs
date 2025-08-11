@@ -1,70 +1,29 @@
-local Plug = vim.fn['plug#']
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- install plugins
-
-vim.call('plug#begin', '~/.config/nvim/plugged')
--- lsp
-Plug('neovim/nvim-lspconfig')
-Plug('mhartington/formatter.nvim')
--- code completion
-Plug('hrsh7th/cmp-nvim-lsp')
-Plug('hrsh7th/cmp-buffer')
-Plug('hrsh7th/cmp-path')
-Plug('hrsh7th/cmp-cmdline')
-Plug('hrsh7th/nvim-cmp')
-Plug('L3MON4D3/LuaSnip')
-Plug('saadparwaiz1/cmp_luasnip')
--- syntax highlight
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
--- search files
-Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install()'] })
-Plug('junegunn/fzf.vim')
--- folder tree
-Plug('kyazdani42/nvim-tree.lua')
--- file icons
-Plug('kyazdani42/nvim-web-devicons')
--- move cursor to any position
-Plug('phaazon/hop.nvim')
--- comment code more easily
-Plug('tomtom/tcomment_vim')
--- change the surroundings of codes
-Plug('tpope/vim-surround') -- Must try!
--- perform git commands
-Plug('tpope/vim-fugitive')
--- show git changes
-Plug('nvim-lua/plenary.nvim')
-Plug('lewis6991/gitsigns.nvim')
--- open git links
-Plug('ruanyl/vim-gh-line')
--- take simple notes
-Plug('xolox/vim-notes')
-Plug('xolox/vim-misc')
--- code suggestions from Github
--- Plug('github/copilot.vim')
--- themes
-Plug('Luxed/ayu-vim')
-Plug('arzg/vim-colors-xcode')
-Plug('folke/tokyonight.nvim', { branch = 'main' })
--- auto pairs
-Plug('jiangmiao/auto-pairs')
--- start up dashboard
-Plug('mhinz/vim-startify')
--- vim status line
-Plug('vim-airline/vim-airline')
-Plug('vim-airline/vim-airline-themes')
--- colors
-Plug('norcalli/nvim-colorizer.lua')
-vim.call('plug#end')
-
-
--- setup plugins
-
-require"hop".setup()
-require'colorizer'.setup()
-
--- <-- start configuring language server
-
-local lsp_on_attach = function (client, bufnr)
+-- Setup lazy.nvim
+require("lazy").setup({
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPost", "BufNewFile" },
+    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "lua", "python", "go", "rust" },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
+    config = function()
+      local lsp_on_attach = function(client, bufnr)
   -- Correctly disable formatting capabilities
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
@@ -85,13 +44,13 @@ end
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
--- Ensure ts_ls is set up correctly
+      -- TypeScript/JavaScript LSP
 lspconfig.ts_ls.setup({
   capabilities = lsp_capabilities,
   on_attach = lsp_on_attach,
 })
 
--- ESLint setup remains the same
+      -- ESLint setup
 lspconfig.eslint.setup({
   capabilities = lsp_capabilities,
   on_attach = function(client, bufnr)
@@ -102,7 +61,13 @@ lspconfig.eslint.setup({
     })
   end,
 })
-
+    end,
+  },
+  {
+    "mhartington/formatter.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "Format", "FormatWrite" },
+    config = function()
 require("formatter").setup({
   logging = false,
   log_level = vim.log.levels.WARN,
@@ -121,41 +86,326 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   group = 'BufWritePostFormatter',
   pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json' },
 })
-
--- end of configuring language server -->
-
---  <-- start configuring code highlighting
-
-require"nvim-treesitter.configs".setup {
-  autopairs = {
-    enable = true,
+    end,
   },
-  incremental_selection = {
-    enable = true,
+
+  -- Completion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function()
+      local kind_icons = {
+        Text = "",
+        Method = "",
+        Function = "",
+        Constructor = "",
+        Field = "ﰠ",
+        Variable = "",
+        Class = "",
+        Interface = "",
+        Module = "",
+        Property = "",
+        Unit = "",
+        Value = "",
+        Enum = "",
+        Keyword = "",
+        Snippet = "",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        EnumMember = "",
+        Constant = "",
+        Struct = "פּ",
+        Event = "",
+        Operator = "",
+        TypeParameter = "",
+      }
+      
+      local check_backspace = function()
+        local col = vim.fn.col "." - 1
+        return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+      end
+
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+      
+      cmp.setup({
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            return vim_item
+          end,
+        },
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        duplicates = {
+          nvim_lsp = 1,
+          luasnip = 1,
+          cmp_tabnine = 1,
+          buffer = 1,
+          path = 1,
+        },
+        confirm_opts = {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
+        },
+        completion = {
+          keyword_length = 1,
+        },
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        },
+        mapping = {
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expandable() then
+              luasnip.expand()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif check_backspace() then
+              fallback()
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+        },
+      })
+    end,
   },
-  indent = {
-    enable = true,
-  },
+
+  -- Syntax highlighting
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSUpdate", "TSInfo", "TSBufEnable", "TSBufDisable", "TSEnable", "TSDisable" },
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        autopairs = { enable = true },
+        incremental_selection = { enable = true },
+        indent = { enable = true },
   rainbow = {
     enable = true,
     disable = { "html" },
     extended_mode = false,
     max_file_lines = nil,
   },
-  autotag = {
-    enable = true,
-  },
+        autotag = { enable = true },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   }
-}
+      })
+    end,
+  },
 
--- end of configuring code highlighting -->
+  -- File search
+  {
+    "junegunn/fzf",
+    lazy = false,
+    priority = 1000,
+    build = function()
+      vim.fn["fzf#install"]()
+    end,
+  },
+  {
+    "junegunn/fzf.vim",
+    dependencies = "junegunn/fzf",
+    lazy = false,
+    cmd = { "Files", "Rg", "Buffers", "History", "BLines", "Lines", "Tags", "Ag", "GFiles" },
+  },
 
--- <-- start configuring git signs
+  -- File tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    lazy = false, -- Load immediately to ensure commands are available
+    priority = 1000,
+    cmd = { 
+      "NvimTreeToggle", 
+      "NvimTreeFocus", 
+      "NvimTreeOpen", 
+      "NvimTreeClose", 
+      "NvimTreeRefresh",
+      "NvimTreeFindFile",
+      "NvimTreeFindFileToggle",
+      "NvimTreeResize",
+      "NvimTreeCollapse",
+      "NvimTreeCollapseKeepBuffers"
+    },
+    keys = {
+      { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file tree" },
+      { "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Find file in tree" },
+    },
+    config = function()
+      local screen_w = vim.opt.columns:get()
+      local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+      local width = math.floor(screen_w)
+      local height = math.floor(screen_h)
+      
+      require("nvim-tree").setup({
+        respect_buf_cwd = true,
+        renderer = {
+          icons = {
+            glyphs = {
+              default = "",
+              symlink = "",
+              git = {
+                deleted = "",
+                ignored = "◌",
+                renamed = "➜",
+                staged = "✓",
+                unmerged = "",
+                unstaged = "✗",
+                untracked = "★",
+              },
+              folder = {
+                default = "",
+                empty = "",
+                empty_open = "",
+                open = "",
+                symlink = "",
+                symlink_open = "",
+              },
+            }
+          }
+        },
+        filters = {
+          dotfiles = false,
+          custom = {
+            ".git",
+            "node_modules",
+            ".cache",
+          },
+        },
+        disable_netrw = false,
+        hijack_netrw = true,
+        open_on_tab = false,
+        hijack_cursor = true,
+        update_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_cwd = false,
+          ignore_list = {},
+        },
+        diagnostics = {
+          enable = true,
+          icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+          },
+        },
+        view = {
+          width = width,
+          adaptive_size = true,
+          preserve_window_proportions = true,
+          number = true,
+          relativenumber = false,
+          signcolumn = "no",
+        },
+        git = {
+          enable = true,
+          ignore = false,
+          timeout = 500,
+        },
+        actions = {
+          change_dir = {
+            global = false,
+          },
+          open_file = {
+            quit_on_open = true,
+            window_picker = {
+              enable = false,
+            }
+          },
+        },
+      })
+    end,
+  },
 
-require('gitsigns').setup {
+  -- Icons
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+  },
+
+  -- Navigation
+  {
+    "phaazon/hop.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "f", mode = { "n", "x", "o" } },
+      { "F", mode = { "n", "x", "o" } },
+      { "t", mode = { "n", "x", "o" } },
+      { "T", mode = { "n", "x", "o" } },
+    },
+    cmd = { "HopWord", "HopLine", "HopChar1", "HopChar2", "HopPattern" },
+    config = function()
+      require("hop").setup()
+    end,
+  },
+
+  -- Comments
+  {
+    "tomtom/tcomment_vim",
+    keys = {
+      { "gc", mode = { "n", "v" } },
+      { "gcc", mode = "n" },
+      { "<C-_>", mode = { "n", "v" } },
+    },
+    event = "VeryLazy",
+  },
+
+  -- Surround
+  {
+    "tpope/vim-surround",
+    keys = { "cs", "ds", "ys" },
+  },
+
+  -- Git
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "G", "Gwrite", "Gread", "Gdiffsplit", "Gvdiffsplit", "GBrowse" },
+  },
+  {
+    "nvim-lua/plenary.nvim",
+    lazy = true,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = "nvim-lua/plenary.nvim",
+    cmd = { "Gitsigns" },
+    config = function()
+      require('gitsigns').setup({
   signs = {
     add          = { text = '┃' },
     change       = { text = '┃' },
@@ -203,194 +453,69 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-}
+      })
+    end,
+  },
+  {
+    "ruanyl/vim-gh-line",
+    keys = { "<leader>gh" },
+  },
 
--- end of configuring git signs -->
+  -- Notes
+  {
+    "xolox/vim-notes",
+    dependencies = "xolox/vim-misc",
+    cmd = { "Note", "NoteFromSelectedText", "DeleteNote", "SearchNotes" },
+  },
+  {
+    "xolox/vim-misc",
+    lazy = true,
+  },
 
--- <-- start configuring file tree
+  -- Themes
+  {
+    "Luxed/ayu-vim",
+    lazy = true,
+  },
+  {
+    "arzg/vim-colors-xcode",
+    lazy = true,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    branch = "main",
+  },
 
-local screen_w = vim.opt.columns:get()
-local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-local width = math.floor(screen_w)
-local height = math.floor(screen_h)
-require"nvim-tree".setup({
-  respect_buf_cwd = true,
-  renderer = {
-    icons = {
-      glyphs = {
-        default = "",
-        symlink = "",
-        git = {
-          deleted = "",
-          ignored = "◌",
-          renamed = "➜",
-          staged = "✓",
-          unmerged = "",
-          unstaged = "✗",
-          untracked = "★",
-        },
-        folder = {
-          default = "",
-          empty = "",
-          empty_open = "",
-          open = "",
-          symlink = "",
-          symlink_open = "",
-        },
-      }
-    }
+  -- Auto pairs
+  {
+    "jiangmiao/auto-pairs",
+    event = "InsertEnter",
   },
-  filters = {
-    dotfiles = false,
-    custom = {
-      ".git",
-      "node_modules",
-      ".cache",
-    },
+
+  -- Start screen
+  {
+    "mhinz/vim-startify",
+    lazy = false, -- Load immediately to avoid command issues
   },
-  disable_netrw = false,
-  hijack_netrw = true,
-  open_on_tab = false,
-  hijack_cursor = true,
-  update_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_cwd = false,
-    ignore_list = {},
+
+  -- Status line
+  {
+    "vim-airline/vim-airline",
+    dependencies = "vim-airline/vim-airline-themes",
+    event = "VeryLazy",
   },
-  diagnostics = {
-    enable = true,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
-    },
+  {
+    "vim-airline/vim-airline-themes",
+    lazy = true,
   },
-  view = {
-    width = width,
-    adaptive_size = true,
-    preserve_window_proportions = true,
-    number = true,
-    relativenumber = false,
-    signcolumn = "no",
-    -- float = {
-    --   enable = true,
-      -- open_win_config = {
-      --   relative = "editor",
-      --   width = width,
-      --   height = height,
-      -- }
-    -- }
-  },
-  git = {
-    enable = true,
-    ignore = false,
-    timeout = 500,
-  },
-  actions = {
-    change_dir = {
-      global = false,
-    },
-    open_file = {
-      quit_on_open = true,
-      window_picker = {
-        enable = false,
-      }
-    },
+
+  -- Color preview
+  {
+    "norcalli/nvim-colorizer.lua",
+    ft = { "css", "scss", "html", "javascript", "typescript", "lua" },
+    config = function()
+      require("colorizer").setup()
+    end,
   },
 })
-
--- end of configuring file tree -->
-
--- <-- start configuring code suggestions
-
-local kind_icons = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "ﰠ",
-  Variable = "",
-  Class = "",
-  Interface = "",
-  Module = "",
-  Property = "",
-  Unit = "",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "פּ",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-local luasnip = require"luasnip"
-local cmp = require"cmp"
-cmp.setup {
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      return vim_item
-    end,
-  },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  duplicates = {
-    nvim_lsp = 1,
-    luasnip = 1,
-    cmp_tabnine = 1,
-    buffer = 1,
-    path = 1,
-  },
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-  },
-  completion = {
-    keyword_length = 1,
-  },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
-    { name = "path" },
-  },
-  mapping = {
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-  },
-}
-
--- end of configuring code suggestions -->
