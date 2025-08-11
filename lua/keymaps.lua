@@ -93,5 +93,4 @@ map('n', '<leader>p', ':FormatWrite<CR>', default_opts)
 
 -- commands
 local create_user_command = vim.api.nvim_create_user_command
-
 create_user_command('Cdnvim', ':e ~/.config/nvim', {})

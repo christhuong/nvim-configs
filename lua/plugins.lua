@@ -1,3 +1,46 @@
+--[[
+├── 🔧 LSP & Development
+│   ├── neovim/nvim-lspconfig          # Language Server Protocol
+│   └── mhartington/formatter.nvim     # Code formatting (Prettier, ESLint)
+├── 🎯 Completion & Snippets  
+│   ├── hrsh7th/nvim-cmp               # Auto-completion engine
+│   ├── hrsh7th/cmp-nvim-lsp           # LSP completion source
+│   ├── hrsh7th/cmp-buffer             # Buffer completion source
+│   ├── hrsh7th/cmp-path               # File path completion
+│   ├── hrsh7th/cmp-cmdline            # Command line completion
+│   ├── L3MON4D3/LuaSnip               # Snippet engine
+│   └── saadparwaiz1/cmp_luasnip       # Snippet completion source
+├── 🌈 Syntax & Highlighting
+│   └── nvim-treesitter/nvim-treesitter # Modern syntax highlighting
+├── 🔍 File Management & Search
+│   ├── junegunn/fzf                   # Fuzzy finder core
+│   ├── junegunn/fzf.vim               # Fuzzy finder for Vim
+│   └── nvim-tree/nvim-tree.lua        # File tree explorer
+│   ├── nvim-tree/nvim-web-devicons    # File type icons
+├── 🚀 Navigation & Movement
+│   └── phaazon/hop.nvim               # Quick cursor jumps
+├── ✍️ Text Editing
+│   ├── tomtom/tcomment_vim            # Smart commenting
+│   └── tpope/vim-surround             # Surround text objects
+├── 📚 Git Integration
+│   ├── tpope/vim-fugitive             # Git commands in Vim
+│   ├── nvim-lua/plenary.nvim          # Lua utility library
+│   ├── lewis6991/gitsigns.nvim        # Git diff indicators
+│   └── ruanyl/vim-gh-line             # GitHub line links
+├── 📝 Notes & Utilities
+│   ├── xolox/vim-notes                # Note taking system
+│   └── xolox/vim-misc                 # Utility functions
+├── 🎨 UI & Themes
+│   ├── Luxed/ayu-vim                  # Ayu color scheme
+│   ├── arzg/vim-colors-xcode          # Xcode color scheme  
+│   ├── folke/tokyonight.nvim          # Tokyo Night theme
+│   ├── jiangmiao/auto-pairs           # Auto bracket/quote pairing
+│   ├── mhinz/vim-startify             # Start screen with recent files
+│   ├── vim-airline/vim-airline        # Status line
+│   ├── vim-airline/vim-airline-themes # Status line themes
+│   └── norcalli/nvim-colorizer.lua    # Color preview in code
+--]]
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

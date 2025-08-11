@@ -1,6 +1,4 @@
------------------------
--- general configs --
------------------------
+-- general configs
 vim.opt.autoindent = true -- auto-indent
 vim.opt.background = "dark"
 vim.opt.clipboard = "unnamedplus" -- copy/paste to system clipboard
@@ -31,18 +29,13 @@ vim.opt.timeoutlen = 1000 -- set key map timeout to 1 second
 vim.opt.ttimeoutlen = 0 -- set typing timeout to 0 seconds
 vim.opt.writebackup = false -- don't write backups
 
------------------------
--- vim notes configs --
------------------------
+-- vim notes
 vim.g.notes_directories = { "~/Documents/Notes" } -- where to look for notes
 vim.g.notes_suffix = ".md" -- note extension
 
 -- fzf
 vim.g.fzf_history_dir = "~/.local/share/fzf-history"
 
------------------------
--- auto commands --
------------------------
 -- auto stripe white spaces
 -- autocmd BufWritePre * StripWhitespace
 vim.cmd [[
