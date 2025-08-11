@@ -1,6 +1,4 @@
-# 🚀 Neovim Configuration
-
-⚡️ My nvim configs as a simple editor ⚡️
+# ⚡️ My Neovim Setup – Simple, Clean, and Code-First ⚡️
 
 ## 📦 Installation
 
