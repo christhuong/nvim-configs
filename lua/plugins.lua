@@ -24,43 +24,42 @@ require("lazy").setup({
     },
     config = function()
       local lsp_on_attach = function(client, bufnr)
-  -- Correctly disable formatting capabilities
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+        -- Correctly disable formatting capabilities
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        local opts = { noremap = true, silent = true }
+        vim.api.nvim_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>R', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      end
 
-  local opts = { noremap = true, silent = true }
-  vim.api.nvim_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>R', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-end
-
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspconfig = require('lspconfig')
+      local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local lspconfig = require('lspconfig')
 
       -- TypeScript/JavaScript LSP
-lspconfig.ts_ls.setup({
-  capabilities = lsp_capabilities,
-  on_attach = lsp_on_attach,
-})
+      lspconfig.ts_ls.setup({
+        capabilities = lsp_capabilities,
+        on_attach = lsp_on_attach,
+      })
 
       -- ESLint setup
-lspconfig.eslint.setup({
-  capabilities = lsp_capabilities,
-  on_attach = function(client, bufnr)
-    lsp_on_attach(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
-  end,
-})
+      lspconfig.eslint.setup({
+        capabilities = lsp_capabilities,
+        on_attach = function(client, bufnr)
+          lsp_on_attach(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end,
+      })
     end,
   },
   {
@@ -68,24 +67,24 @@ lspconfig.eslint.setup({
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "Format", "FormatWrite" },
     config = function()
-require("formatter").setup({
-  logging = false,
-  log_level = vim.log.levels.WARN,
-  filetype = {
-    lua = { require("formatter.filetypes.lua").stylua },
-    javascript = { require("formatter.filetypes.javascript").prettier },
-    javascriptreact = { require("formatter.filetypes.javascript").prettier },
-    typescript = { require("formatter.filetypes.typescript").prettier },
-    typescriptreact = { require("formatter.filetypes.typescript").prettier },
-    json = { require("formatter.filetypes.json").prettier },
-  },
-})
-vim.api.nvim_create_augroup('BufWritePostFormatter', {})
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'FormatWrite',
-  group = 'BufWritePostFormatter',
-  pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json' },
-})
+      require("formatter").setup({
+        logging = false,
+        log_level = vim.log.levels.WARN,
+        filetype = {
+          lua = { require("formatter.filetypes.lua").stylua },
+          javascript = { require("formatter.filetypes.javascript").prettier },
+          javascriptreact = { require("formatter.filetypes.javascript").prettier },
+          typescript = { require("formatter.filetypes.typescript").prettier },
+          typescriptreact = { require("formatter.filetypes.typescript").prettier },
+          json = { require("formatter.filetypes.json").prettier },
+        },
+      })
+      vim.api.nvim_create_augroup('BufWritePostFormatter', {})
+      vim.api.nvim_create_autocmd('BufWritePost', {
+        command = 'FormatWrite',
+        group = 'BufWritePostFormatter',
+        pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json' },
+      })
     end,
   },
 
@@ -233,17 +232,17 @@ vim.api.nvim_create_autocmd('BufWritePost', {
         autopairs = { enable = true },
         incremental_selection = { enable = true },
         indent = { enable = true },
-  rainbow = {
-    enable = true,
-    disable = { "html" },
-    extended_mode = false,
-    max_file_lines = nil,
-  },
+        rainbow = {
+          enable = true,
+          disable = { "html" },
+          extended_mode = false,
+          max_file_lines = nil,
+        },
         autotag = { enable = true },
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  }
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        }
       })
     end,
   },
@@ -309,12 +308,12 @@ vim.api.nvim_create_autocmd('BufWritePost', {
                 untracked = "★",
               },
               folder = {
-                default = "",
-                empty = "",
-                empty_open = "",
-                open = "",
-                symlink = "",
-                symlink_open = "",
+                default = "",
+                empty = "",
+                empty_open = "",
+                open = "",
+                symlink = "",
+                symlink_open = "",
               },
             }
           }
@@ -429,53 +428,53 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     cmd = { "Gitsigns" },
     config = function()
       require('gitsigns').setup({
-  signs = {
-    add          = { text = '┃' },
-    change       = { text = '┃' },
-    delete       = { text = '_' },
-    topdelete    = { text = '‾' },
-    changedelete = { text = '~' },
-    untracked    = { text = '┆' },
-  },
-  signs_staged = {
-    add          = { text = '┃' },
-    change       = { text = '┃' },
-    delete       = { text = '_' },
-    topdelete    = { text = '‾' },
-    changedelete = { text = '~' },
-    untracked    = { text = '┆' },
-  },
-  signs_staged_enable = true,
-  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-  watch_gitdir = {
-    follow_files = true
-  },
-  auto_attach = true,
-  attach_to_untracked = false,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
-    ignore_whitespace = false,
-    virt_text_priority = 100,
-  },
-  current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
-  sign_priority = 6,
-  update_debounce = 100,
-  status_formatter = nil, -- Use default
-  max_file_length = 40000, -- Disable if file is longer than this (in lines)
-  preview_config = {
-    -- Options passed to nvim_open_win
-    border = 'single',
-    style = 'minimal',
-    relative = 'cursor',
-    row = 0,
-    col = 1
-  },
+        signs = {
+          add          = { text = '┃' },
+          change       = { text = '┃' },
+          delete       = { text = '_' },
+          topdelete    = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked    = { text = '┆' },
+        },
+        signs_staged = {
+          add          = { text = '┃' },
+          change       = { text = '┃' },
+          delete       = { text = '_' },
+          topdelete    = { text = '‾' },
+          changedelete = { text = '~' },
+          untracked    = { text = '┆' },
+        },
+        signs_staged_enable = true,
+        signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+        numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+        watch_gitdir = {
+          follow_files = true
+        },
+        auto_attach = true,
+        attach_to_untracked = false,
+        current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame_opts = {
+          virt_text = true,
+          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+          delay = 1000,
+          ignore_whitespace = false,
+          virt_text_priority = 100,
+        },
+        current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
+        sign_priority = 6,
+        update_debounce = 100,
+        status_formatter = nil, -- Use default
+        max_file_length = 40000, -- Disable if file is longer than this (in lines)
+        preview_config = {
+          -- Options passed to nvim_open_win
+          border = 'single',
+          style = 'minimal',
+          relative = 'cursor',
+          row = 0,
+          col = 1
+        },
       })
     end,
   },

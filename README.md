@@ -1,4 +1,4 @@
-# ⚡️ My Neovim Setup – Simple, Clean, and Code-First ⚡️
+# ⚡️ My simple and minimal neovim setup ⚡️
 
 ## Getting ready
 
