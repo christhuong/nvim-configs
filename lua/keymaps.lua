@@ -94,8 +94,4 @@ map('n', '<leader>p', ':FormatWrite<CR>', default_opts)
 -- commands
 local create_user_command = vim.api.nvim_create_user_command
 
-create_user_command('Cdeh', ':e ~/eh', {})
-create_user_command('Cdfrontendcore', ':e ~/eh/frontend-core', {})
-create_user_command('Cdemploymenthero', ':e ~/eh/employment-hero', {})
 create_user_command('Cdnvim', ':e ~/.config/nvim', {})
-create_user_command('Cdreporeport', ':e ~/thuong/repo-report', {})

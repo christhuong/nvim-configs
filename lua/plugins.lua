@@ -103,31 +103,41 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     },
     config = function()
       local kind_icons = {
-        Text = "",
-        Method = "",
-        Function = "",
-        Constructor = "",
-        Field = "ﰠ",
-        Variable = "",
-        Class = "",
-        Interface = "",
-        Module = "",
-        Property = "",
-        Unit = "",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "פּ",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
+        Text = "󰉿",
+        Method = "󰆧",
+        Function = "󰊕",
+        Constructor = "󰡱",
+        Field = "󰜢",
+        Variable = "󰀫",
+        Class = "󰠱",
+        Interface = "󰜰",
+        Module = "󰏗",
+        Property = "󰜢",
+        Unit = "󰑭",
+        Value = "󰎠",
+        Enum = "󰒻",
+        Keyword = "󰌋",
+        Snippet = "󰘦",
+        Color = "󰏘",
+        File = "󰈙",
+        Reference = "󰈇",
+        Folder = "󰉋",
+        EnumMember = "󰕘",
+        Constant = "󰏿",
+        Struct = "󰙅",
+        Event = "󰉁",
+        Operator = "󰆕",
+        TypeParameter = "󰊄",
+        Key = "󰌋",
+        Namespace = "󰌗",
+        Null = "󰟢",
+        Number = "󰎠",
+        String = "󰉿",
+        Boolean = "󰨙",
+        Array = "󰅪",
+        Object = "󰅩",
+        Copilot = "",
+        TabNine = "󰏚",
       }
       
       local check_backspace = function()
@@ -142,7 +152,20 @@ vim.api.nvim_create_autocmd('BufWritePost', {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            -- Kind icons
+            vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind] or "", vim_item.kind)
+            
+            -- Source names
+            vim_item.menu = ({
+              nvim_lsp = "[LSP]",
+              luasnip = "[Snippet]",
+              buffer = "[Buffer]",
+              path = "[Path]",
+              nvim_lua = "[Lua]",
+              copilot = "[Copilot]",
+              cmp_tabnine = "[TabNine]",
+            })[entry.source.name]
+            
             return vim_item
           end,
         },
