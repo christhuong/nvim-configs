@@ -1,0 +1,247 @@
+{
+    "editor.inlineSuggest.enabled": true,
+    "editor.formatOnSave": true,
+    "editor.fontSize": 14,
+    "workbench.colorTheme": "Moonlight Italic",
+    "vim.enableNeovim": true,
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        },
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        },
+        {
+            "before": ["<C-j>"],
+            "commands": ["editor.action.moveLinesDownAction"]
+        },
+        {
+            "before": ["<C-k>"],
+            "commands": ["editor.action.moveLinesUpAction"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<Esc>"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["c", "p"],
+            "commands": ["copyRelativeFilePath"]
+        },
+        {
+            "before": ["c", "P"],
+            "commands": ["copyFilePath"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "after": [":", "q", "<cr>"]
+        },
+        {
+            "before": ["<leader>", "q", "q"],
+            "commands": ["workbench.action.closeActiveEditor"]
+        },
+        {
+            "before": ["<leader>", "w"],
+            "commands": ["workbench.action.files.save"]
+        },
+        {
+            "before": ["<leader>", "w", "q"],
+            "commands": ["workbench.action.files.saveAndClose"]
+        },
+        {
+            "before": ["<leader>", "v"],
+            "commands": ["workbench.action.splitEditor"]
+        },
+        {
+            "before": ["<leader>", "s"],
+            "commands": ["workbench.action.splitEditorDown"]
+        },
+        {
+            "before": ["="],
+            "commands": ["workbench.action.increaseViewWidth"]
+        },
+        {
+            "before": ["-"],
+            "commands": ["workbench.action.decreaseViewWidth"]
+        },
+        {
+            "before": ["<leader>", "f", "f"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<leader>", "f", "a"],
+            "commands": ["workbench.action.showAllSymbols"]
+        },
+        {
+            "before": ["<leader>", "f", "w"],
+            "commands": ["workbench.view.search"]
+        },
+        {
+            "before": ["<leader>", "f", "c"],
+            "commands": ["workbench.action.findInFiles"]
+        },
+        {
+            "before": ["<leader>", "f", "l"],
+            "commands": ["workbench.action.gotoLine"]
+        },
+        {
+            "before": ["<leader>", "f", "h"],
+            "commands": ["workbench.action.openRecent"]
+        },
+        {
+            "before": ["<leader>", "f", "s"],
+            "commands": ["git.openChange"]
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["workbench.action.switchWindow"]
+        },
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["workbench.files.action.showActiveFileInExplorer"]
+        },
+        {
+            "before": ["<leader>", "m"],
+            "commands": ["workbench.action.toggleSidebarVisibility"]
+        },
+        {
+            "before": ["<leader>", "g", "s"],
+            "commands": ["workbench.view.scm"]
+        },
+        {
+            "before": ["<leader>", "g", "l", "b"],
+            "commands": ["gitlens.toggleLineBlame"]
+        },
+        {
+            "before": ["<leader>", "g", "d"],
+            "commands": ["git.openChange"]
+        },
+        {
+            "before": ["g", "k"],
+            "commands": ["workbench.action.editor.previousChange"]
+        },
+        {
+            "before": ["g", "j"],
+            "commands": ["workbench.action.editor.nextChange"]
+        },
+        {
+            "before": ["<leader>", "j"],
+            "after": ["<leader>", "<leader>", "<leader>", "j"]
+        },
+        {
+            "before": ["J"],
+            "commands": ["workbench.action.previousEditor"]
+        },
+        {
+            "before": ["K"],
+            "commands": ["workbench.action.nextEditor"]
+        },
+        {
+            "before": ["<C-j>"],
+            "commands": ["editor.action.moveLinesDownAction"]
+        },
+        {
+            "before": ["<C-k>"],
+            "commands": ["editor.action.moveLinesUpAction"]
+        },
+        {
+            "before": ["<leader>", "1"],
+            "commands": ["workbench.action.openEditorAtIndex1"]
+        },
+        {
+            "before": ["<leader>", "2"],
+            "commands": ["workbench.action.openEditorAtIndex2"]
+        },
+        {
+            "before": ["<leader>", "3"],
+            "commands": ["workbench.action.openEditorAtIndex3"]
+        },
+        {
+            "before": ["<leader>", "4"],
+            "commands": ["workbench.action.openEditorAtIndex4"]
+        },
+        {
+            "before": ["<leader>", "5"],
+            "commands": ["workbench.action.openEditorAtIndex5"]
+        },
+        {
+            "before": ["<leader>", "6"],
+            "commands": ["workbench.action.openEditorAtIndex6"]
+        },
+        {
+            "before": ["<leader>", "7"],
+            "commands": ["workbench.action.openEditorAtIndex7"]
+        },
+        {
+            "before": ["<leader>", "8"],
+            "commands": ["workbench.action.openEditorAtIndex8"]
+        },
+        {
+            "before": ["<leader>", "9"],
+            "commands": ["workbench.action.openEditorAtIndex9"]
+        },
+        {
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.files.newUntitledFile"]
+        },
+        {
+            "before": ["<C-t>"],
+            "commands": ["workbench.action.moveEditorToNewWindow"]
+        },
+        {
+            "before": ["<leader>", "k"],
+            "commands": ["editor.action.showHover"]
+        },
+        {
+            "before": ["<leader>", "p"],
+            "commands": ["editor.action.formatDocument"]
+        },
+        
+        {
+            "before": ["<leader>", "."],
+            "commands": ["workbench.action.terminal.toggleTerminal"]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        },
+        {
+            "before": ["<C-j>"],
+            "commands": ["editor.action.moveLinesDownAction"]
+        },
+        {
+            "before": ["<C-k>"],
+            "commands": ["editor.action.moveLinesUpAction"]
+        }
+    ],
+    "vim.operatorPendingModeKeyBindings": [],
+    "vim.commandLineModeKeyBindings": [],
+    "terminal.integrated.commandsToSkipShell": [
+        "workbench.action.quickOpen"
+    ],
+    "eslint.codeActionsOnSave.mode": "problems",
+    "eslint.format.enable": true,
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {},
+    "explorer.confirmDelete": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "git.enableSmartCommit": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "security.promptForLocalFileProtocolHandling": false
+}
