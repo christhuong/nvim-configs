@@ -187,15 +187,17 @@ gem install solargraph
 
 #### Git Operations
 
-| Key           | Action                  |
-| ------------- | ----------------------- |
-| `<leader>gs`  | Git status              |
-| `<leader>glb` | Toggle line blame       |
-| `<leader>gd`  | Git diff this file      |
-| `gj`          | Next git hunk           |
-| `gk`          | Previous git hunk       |
-| `cp`          | Copy relative file path |
-| `cP`          | Copy absolute file path |
+| Key           | Action                           |
+| ------------- | -------------------------------- |
+| `<leader>gs`  | Git status                       |
+| `<leader>glb` | Toggle line blame                |
+| `<leader>gd`  | Git diff this file               |
+| `<leader>gh`  | Open line/selection on GitHub    |
+| `<leader>gb`  | Open line/selection GitHub blame |
+| `gj`          | Next git hunk                    |
+| `gk`          | Previous git hunk                |
+| `cp`          | Copy relative file path          |
+| `cP`          | Copy absolute file path          |
 
 #### Terminal
 

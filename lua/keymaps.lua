@@ -55,6 +55,12 @@ map('n', '<leader>gd', ':Gitsigns diffthis<CR>', default_opts)
 map('n', 'gk', ':Gitsigns prev_hunk<CR>', default_opts)
 map('n', 'gj', ':Gitsigns next_hunk<CR>', default_opts)
 
+-- github links (vim-gh-line)
+map('n', '<leader>gh', ':GH<CR>', default_opts)
+map('v', '<leader>gh', ':GH<CR>', default_opts)
+map('n', '<leader>gb', ':GB<CR>', default_opts)
+map('v', '<leader>gb', ':GB<CR>', default_opts)
+
 -- easy jump
 map('n', '<leader>j', ':HopWordMW<CR>', default_opts)
 

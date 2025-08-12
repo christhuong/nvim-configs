@@ -541,9 +541,14 @@ require("lazy").setup({
       })
     end,
   },
+  -- GitHub line links
   {
     "ruanyl/vim-gh-line",
-    keys = { "<leader>gh" },
+    cmd = { "GH", "GB" },
+    keys = {
+      { "<leader>gh", mode = { "n", "v" } },
+      { "<leader>gb", mode = { "n", "v" } },
+    },
   },
 
   -- Notes

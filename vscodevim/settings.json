@@ -99,7 +99,7 @@
         },
         {
             "before": ["<leader>", "f", "s"],
-            "commands": ["git.openChange"]
+            "commands": ["workbench.view.scm"]
         },
         {
             "before": ["<leader>", "o"],
@@ -122,8 +122,16 @@
             "commands": ["gitlens.toggleLineBlame"]
         },
         {
+            "before": ["<leader>", "g", "h"],
+            "commands": ["gitlens.openFileOnRemote"]
+        },
+        {
+            "before": ["<leader>", "g", "b"],
+            "commands": ["gitlens.openFileBlameOnRemote"]
+        },
+        {
             "before": ["<leader>", "g", "d"],
-            "commands": ["git.openChange"]
+            "commands": ["workbench.action.git.openFile"]
         },
         {
             "before": ["g", "k"],
@@ -227,6 +235,14 @@
         {
             "before": ["<C-k>"],
             "commands": ["editor.action.moveLinesUpAction"]
+        },
+        {
+            "before": ["<leader>", "g", "h"],
+            "commands": ["gitlens.openFileOnRemote"]
+        },
+        {
+            "before": ["<leader>", "g", "b"],
+            "commands": ["gitlens.openFileBlameOnRemote"]
         }
     ],
     "vim.operatorPendingModeKeyBindings": [],
