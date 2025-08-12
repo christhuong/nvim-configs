@@ -16,12 +16,8 @@ npm install -g typescript typescript-language-server vscode-langservers-extracte
 npm install -g eslint prettier
 ```
 
-```bash
-gem install solargraph
-```
-
 ```vim
-:TSInstall typescript javascript python lua json css html vim ruby
+:TSInstall typescript javascript tsx json css html vim ruby python lua
 ```
 
 ## 🎯 Cheatsheet
@@ -349,3 +345,18 @@ gem install solargraph
 - **Key mappings**: Edit `lua/keymaps.lua`
 - **Plugin configs**: Edit `lua/plugins.lua`
 - **Neovim settings**: Edit `lua/settings.lua`
+
+## Other setup
+
+### Increase key repeats
+
+```bash
+defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+```
+
+```bash
+osascript -e 'id of app "Cursor"'
+defaults write 'com.todesktop.230313mzl4w4u92' ApplePressAndHoldEnabled -bool false
+# defaults write 'com.microsoft.VSCode' ApplePressAndHoldEnabled -bool false
+```
