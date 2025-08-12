@@ -127,7 +127,11 @@
         },
         {
             "before": ["<leader>", "g", "b"],
-            "commands": ["gitlens.openFileBlameOnRemote"]
+            "commands": ["gitlens.toggleFileBlame"]
+        },
+        {
+            "before": ["<leader>", "g", "B"],
+            "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
         },
         {
             "before": ["<leader>", "g", "d"],
@@ -242,7 +246,11 @@
         },
         {
             "before": ["<leader>", "g", "b"],
-            "commands": ["gitlens.openFileBlameOnRemote"]
+            "commands": ["gitlens.toggleFileBlame"]
+        },
+        {
+            "before": ["<leader>", "g", "B"],
+            "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
         }
     ],
     "vim.operatorPendingModeKeyBindings": [],

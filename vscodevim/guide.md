@@ -7,7 +7,7 @@
 cp '~/Library/Application Support/Cursor/User/settings.json' '~/Library/Application Support/Cursor/User/settings_backup.json'
 
 # Apply the new settings
-cp '~/.config/nvim/vscodevim/settings.json' '~/Library/Application\ Support/Cursor/User/settings.json'
+cp ~/.config/nvim/vscodevim/settings.json '~/Library/Application Support/Cursor/User/settings.json'
 ```
 
 ## **Keybindings**
@@ -79,5 +79,5 @@ cp '~/.config/nvim/vscodevim/settings.json' '~/Library/Application\ Support/Curs
 
 ```bash
 # Restore your backup
-cp ~/Library/Application\ Support/Cursor/User/settings_backup.json ~/Library/Application\ Support/Cursor/User/settings.json
+cp '~/Library/Application Support/Cursor/User/settings_backup.json' '~/Library/Application Support/Cursor/User/settings.json'
 ```
