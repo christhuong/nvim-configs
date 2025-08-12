@@ -71,8 +71,8 @@ cp ~/.config/nvim/vscodevim/settings.json '~/Library/Application Support/Cursor/
 
 ### **🤖 Tools**
 
-| Keybinding | Action | Notes |
-| ------------ |kk ---------------- | --------------------------------- |
+| Keybinding  | Action          | Notes            |
+| ----------- | --------------- | ---------------- |
 | `<leader>.` | Toggle terminal | Like `:vs +term` |
 
 ## 🐛 **If Something Breaks:**
