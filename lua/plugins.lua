@@ -346,8 +346,7 @@ require("lazy").setup({
       "NvimTreeFindFileToggle",
       "NvimTreeResize",
       "NvimTreeCollapse",
-      "NvimTreeCollapseKeepBuffers",
-      "NvimTreeDiagnosticHintIcon"
+      "NvimTreeCollapseKeepBuffers"
     },
     keys = {
       { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle file tree" },
@@ -358,6 +357,8 @@ require("lazy").setup({
       local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
       local width = math.floor(screen_w)
       local height = math.floor(screen_h)
+      
+      -- Diagnostics disabled in nvim-tree to avoid sign conflicts
       
       require("nvim-tree").setup({
         respect_buf_cwd = true,
@@ -405,13 +406,7 @@ require("lazy").setup({
           ignore_list = {},
         },
         diagnostics = {
-          enable = true,
-          icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-          },
+          enable = false,
         },
         view = {
           width = width,
