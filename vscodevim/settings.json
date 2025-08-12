@@ -138,6 +138,14 @@
             "commands": ["workbench.action.git.openFile"]
         },
         {
+            "before": ["<leader>", "e"],
+            "commands": ["editor.action.marker.nextInFiles"]
+        },
+        {
+            "before": ["<leader>", "d"],
+            "commands": ["editor.action.marker.prevInFiles"]
+        },
+        {
             "before": ["g", "k"],
             "commands": ["workbench.action.editor.previousChange"]
         },
@@ -251,6 +259,14 @@
         {
             "before": ["<leader>", "g", "B"],
             "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
+        },
+        {
+            "before": ["<leader>", "e"],
+            "commands": ["editor.action.marker.nextInFiles"]
+        },
+        {
+            "before": ["<leader>", "d"],
+            "commands": ["editor.action.marker.prevInFiles"]
         }
     ],
     "vim.operatorPendingModeKeyBindings": [],
