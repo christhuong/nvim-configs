@@ -106,3 +106,4 @@ map('n', '<leader>cp', ':Copilot panel<CR>', default_opts)
 -- commands
 local create_user_command = vim.api.nvim_create_user_command
 create_user_command('Cdnvim', ':e ~/.config/nvim', {})
+create_user_command('CommitAllFiles', ':! git add . && git commit -m "Update files" && git push origin head', {})
