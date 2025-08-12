@@ -2,16 +2,16 @@
 
 ## Getting ready
 
-```bash
+```shell
 brew install neovim fzf ripgrep
 ```
 
-```bash
+```shell
 mv ~/.config/nvim ~/.config/nvim.backup
 git clone git@github.com:christhuong/nvim-configs.git ~/.config/nvim
 ```
 
-```bash
+```shell
 npm install -g typescript typescript-language-server vscode-langservers-extracted
 npm install -g eslint prettier
 ```
@@ -350,12 +350,12 @@ npm install -g eslint prettier
 
 ### Increase key repeats
 
-```bash
+```shell
 defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 ```
 
-```bash
+```shell
 osascript -e 'id of app "Cursor"'
 defaults write 'com.todesktop.230313mzl4w4u92' ApplePressAndHoldEnabled -bool false
 # defaults write 'com.microsoft.VSCode' ApplePressAndHoldEnabled -bool false

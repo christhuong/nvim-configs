@@ -106,6 +106,8 @@ map('n', '<leader>cp', ':Copilot panel<CR>', default_opts)
 -- commands
 local create_user_command = vim.api.nvim_create_user_command
 create_user_command('Cdnvim', ':e ~/.config/nvim', {})
+create_user_command('Cdzshrc', ':e ~/.zshrc', {})
+--
 create_user_command('CommitAndPushAllFiles', function(opts)
   local commit_message = opts.args or 'Update files'
   vim.cmd(string.format(':! git add . && git commit -m %s && git push origin head', commit_message))

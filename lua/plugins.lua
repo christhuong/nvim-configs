@@ -28,18 +28,15 @@
 │   ├── nvim-lua/plenary.nvim          # Lua utility library
 │   ├── lewis6991/gitsigns.nvim        # Git diff indicators
 │   └── ruanyl/vim-gh-line             # GitHub line links
-├── 📝 Notes & Utilities
+├── 📝 Notes taking
 │   ├── xolox/vim-notes                # Note taking system
 │   └── xolox/vim-misc                 # Utility functions
 ├── 🎨 UI & Themes
 │   ├── Luxed/ayu-vim                  # Ayu color scheme
 │   ├── arzg/vim-colors-xcode          # Xcode color scheme  
 │   ├── folke/tokyonight.nvim          # Tokyo Night theme
-│   ├── windwp/nvim-autopairs          # Smart auto bracket/quote pairing
-│   ├── mhinz/vim-startify             # Start screen with recent files
 │   ├── vim-airline/vim-airline        # Status line
 │   ├── vim-airline/vim-airline-themes # Status line themes
-│   └── norcalli/nvim-colorizer.lua    # Color preview in code
 --]]
 
 -- Bootstrap lazy.nvim
@@ -577,12 +574,6 @@ require("lazy").setup({
     branch = "main",
   },
 
-  -- Start screen
-  {
-    "mhinz/vim-startify",
-    lazy = false, -- Load immediately to avoid command issues
-  },
-
   -- Status line
   {
     "vim-airline/vim-airline",
@@ -592,14 +583,5 @@ require("lazy").setup({
   {
     "vim-airline/vim-airline-themes",
     lazy = true,
-  },
-
-  -- Color preview
-  {
-    "norcalli/nvim-colorizer.lua",
-    ft = { "css", "scss", "html", "javascript", "typescript", "lua" },
-    config = function()
-      require("colorizer").setup()
-    end,
   },
 })
