@@ -272,7 +272,7 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        autopairs = { enable = true },
+        autopairs = { enable = false },
         incremental_selection = { enable = true },
         indent = { enable = true },
         rainbow = {
