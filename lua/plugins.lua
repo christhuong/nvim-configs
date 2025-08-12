@@ -9,7 +9,8 @@
 │   ├── hrsh7th/cmp-path               # File path completion
 │   ├── hrsh7th/cmp-cmdline            # Command line completion
 │   ├── L3MON4D3/LuaSnip               # Snippet engine
-│   └── saadparwaiz1/cmp_luasnip       # Snippet completion source
+│   ├── saadparwaiz1/cmp_luasnip       # Snippet completion source
+│   └── github/copilot.vim             # Official GitHub Copilot AI suggestions
 ├── 🌈 Syntax & Highlighting
 │   └── nvim-treesitter/nvim-treesitter # Modern syntax highlighting
 ├── 🔍 File Management & Search
@@ -34,7 +35,7 @@
 │   ├── Luxed/ayu-vim                  # Ayu color scheme
 │   ├── arzg/vim-colors-xcode          # Xcode color scheme  
 │   ├── folke/tokyonight.nvim          # Tokyo Night theme
-│   ├── jiangmiao/auto-pairs           # Auto bracket/quote pairing
+│   ├── windwp/nvim-autopairs          # Smart auto bracket/quote pairing
 │   ├── mhinz/vim-startify             # Start screen with recent files
 │   ├── vim-airline/vim-airline        # Status line
 │   ├── vim-airline/vim-airline-themes # Status line themes
@@ -128,6 +129,29 @@ require("lazy").setup({
         group = 'BufWritePostFormatter',
         pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json' },
       })
+    end,
+  },
+
+  -- GitHub Copilot (Official)
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    config = function()
+      -- Enable Copilot for specific file types
+      vim.g.copilot_filetypes = {
+        ["*"] = true,
+        gitcommit = false,
+        gitrebase = false,
+        help = false,
+        markdown = false,
+        yaml = false,
+      }
+      
+      -- Copilot Tab completion settings
+      vim.g.copilot_no_tab_map = true
+      vim.api.nvim_set_keymap("i", "<C-Y>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+      vim.api.nvim_set_keymap("i", "<C-H>", 'copilot#Previous()', { silent = true, expr = true })
+      vim.api.nvim_set_keymap("i", "<C-L>", 'copilot#Next()', { silent = true, expr = true })
     end,
   },
 
@@ -551,12 +575,6 @@ require("lazy").setup({
     "folke/tokyonight.nvim",
     lazy = true,
     branch = "main",
-  },
-
-  -- Auto pairs
-  {
-    "jiangmiao/auto-pairs",
-    event = "InsertEnter",
   },
 
   -- Start screen
