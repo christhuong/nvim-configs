@@ -16,8 +16,14 @@ vim.cmd [[ colorscheme xcodedarkhc ]]
 -- vim.cmd [[ colorscheme xcodelight ]]
 
 -- 🔍 FZF
--- vim.g.fzf_layout = { ['window'] = { ['width'] = 1, ['height'] = 1 } }
--- vim.g.fzf_layout = { ['window'] = { ['width'] = 1, ['height'] = 1, ['border'] = 'none' } }
+-- Match nvim-tree floating dimensions (80% width/height, centered)
+vim.g.fzf_layout = { 
+  window = { 
+    width = 0.8, 
+    height = 0.8,
+    border = 'rounded'
+  } 
+}
 vim.g.fzf_preview_window = {'right:30%', 'ctrl-/'}  -- Show preview on right
 -- vim.g.fzf_preview_window = ''  -- Hide preview window
 -- Hide UI elements when FZF is active (when using full screen)
@@ -143,3 +149,17 @@ vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach" }, {
     vim.cmd("AirlineRefresh")
   end,
 })
+
+--
+-- 🔍 NVIM-TREE
+--
+vim.cmd [[
+  " Make floating nvim-tree background match editor
+  highlight NvimTreeNormal guibg=NONE
+  highlight NvimTreeNormalFloat guibg=NONE
+  highlight NvimTreeFloatBorder guibg=NONE guifg=#5C6370
+  highlight FloatBorder guibg=NONE guifg=#5C6370
+  " FZF floating window transparency
+  highlight FzfLuaNormal guibg=NONE
+  highlight FzfLuaBorder guibg=NONE guifg=#5C6370
+]]

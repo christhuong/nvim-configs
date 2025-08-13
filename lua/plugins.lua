@@ -439,11 +439,6 @@ require("lazy").setup({
       { "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Find file in tree" },
     },
     config = function()
-      local screen_w = vim.opt.columns:get()
-      local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
-      local width = math.floor(screen_w)
-      local height = math.floor(screen_h)
-      
       require("nvim-tree").setup({
         respect_buf_cwd = true,
         renderer = {
@@ -494,12 +489,19 @@ require("lazy").setup({
           enable = false,
         },
         view = {
-          width = width,
-          adaptive_size = true,
-          preserve_window_proportions = true,
-          number = true,
-          relativenumber = false,
-          signcolumn = "no",
+          float = {
+            enable = true,
+            quit_on_focus_loss = true,
+            open_win_config = {
+              relative = "editor",
+              border = "rounded",
+              width = math.floor(vim.o.columns * 0.8),  -- 80% of screen width
+              height = math.floor(vim.o.lines * 0.8),   -- 80% of screen height
+              row = math.floor(vim.o.lines * 0.1),      -- Center vertically
+              col = math.floor(vim.o.columns * 0.1),    -- Center horizontally
+              style = "minimal",
+            },
+          },
         },
         git = {
           enable = true,
@@ -511,9 +513,9 @@ require("lazy").setup({
             global = false,
           },
           open_file = {
-            quit_on_open = true,
+            quit_on_open = true,  -- Close floating tree after opening file
             window_picker = {
-              enable = false,
+              enable = true,  -- Allow picking which window to open file in
             }
           },
         },
