@@ -23,10 +23,10 @@ gem install ruby-lsp rubocop
 
 ## 🎨 Customization
 
-- **Themes**: Edit `lua/visuals.lua`
-- **Key mappings**: Edit `lua/keymaps.lua`
-- **Plugin configs**: Edit `lua/plugins.lua`
-- **Neovim settings**: Edit `lua/settings.lua`
+- **Themes**: Edit [lua/visuals.lua](lua/visuals.lua)
+- **Key mappings**: Edit [lua/keymaps.lua](lua/keymaps.lua)
+- **Plugin configs**: Edit [lua/plugins.lua](lua/plugins.lua)
+- **Neovim settings**: Edit [lua/settings.lua](lua/settings.lua)
 
 ## Other setup
 
@@ -43,6 +43,6 @@ defaults write 'com.todesktop.230313mzl4w4u92' ApplePressAndHoldEnabled -bool fa
 # defaults write 'com.microsoft.VSCode' ApplePressAndHoldEnabled -bool false
 ```
 
-## 📖 Key mappings reference
+## 📖 Key-maps reference
 
-📚 **[Complete Key Mappings Cheatsheet](KEYMAP_CHEATSHEET.md)**
+📚 **[Complete key-maps cheat sheet for this nvim setup](KEYMAP_CHEATSHEET.md)**

@@ -1,4 +1,4 @@
-# 🚀 My Key Mappings Cheatsheet
+# ⌨️ Key-maps cheat sheet
 
 ---
 
