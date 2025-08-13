@@ -28,6 +28,13 @@
 │   ├── nvim-lua/plenary.nvim          # Lua utility library
 │   ├── lewis6991/gitsigns.nvim        # Git diff indicators
 │   └── ruanyl/vim-gh-line             # GitHub line links
+├── 🐍 Python Development
+│   ├── pyright (LSP)                  # Type checking & IntelliSense
+│   ├── ruff                           # Super fast linting & import sorting
+│   └── black (formatter)              # Code formatting
+├── 💎 Ruby Development
+│   ├── ruby-lsp                       # Official Ruby LSP
+│   └── rubocop (formatter)            # Linting & code formatting
 ├── 📝 Notes taking
 │   ├── xolox/vim-notes                # Note taking system
 │   └── xolox/vim-misc                 # Utility functions
@@ -59,7 +66,7 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
-    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "lua", "python", "go", "rust" },
+    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "lua", "python", "ruby", "go", "rust" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
     },
@@ -101,6 +108,60 @@ require("lazy").setup({
           })
         end,
       })
+
+      -- Python LSP (pyright) - provides excellent type checking and IntelliSense
+      lspconfig.pyright.setup({
+        capabilities = lsp_capabilities,
+        on_attach = lsp_on_attach,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = "workspace",
+            },
+          },
+        },
+      })
+
+      -- Python linting with ruff (super fast linter)
+      lspconfig.ruff.setup({
+        capabilities = lsp_capabilities,
+        on_attach = function(client, bufnr)
+          -- Disable hover in favor of pyright
+          client.server_capabilities.hoverProvider = false
+          lsp_on_attach(client, bufnr)
+        end,
+      })
+
+      -- Ruby LSP (official Ruby LSP by Shopify)
+      lspconfig.ruby_lsp.setup({
+        capabilities = lsp_capabilities,
+        on_attach = lsp_on_attach,
+        settings = {
+          rubyLsp = {
+            enabledFeatures = {
+              "codeActions",
+              "diagnostics", 
+              "documentHighlights",
+              "documentLink",
+              "documentSymbols",
+              "foldingRanges",
+              "formatting",
+              "hover",
+              "inlayHint",
+              "onTypeFormatting",
+              "selectionRanges",
+              "semanticHighlighting",
+              "completion",
+              "codeLens",
+              "definition",
+              "workspaceSymbols",
+              "signatureHelp",
+            },
+          },
+        },
+      })
     end,
   },
   {
@@ -118,13 +179,27 @@ require("lazy").setup({
           typescript = { require("formatter.filetypes.typescript").prettier },
           typescriptreact = { require("formatter.filetypes.typescript").prettier },
           json = { require("formatter.filetypes.json").prettier },
+          
+          -- Python formatting with black
+          python = { require("formatter.filetypes.python").black },
+          
+          -- Ruby formatting with rubocop
+          ruby = {
+            function()
+              return {
+                exe = "rubocop",
+                args = { "-A", "--format", "quiet", "--stderr", "--stdin", vim.api.nvim_buf_get_name(0) },
+                stdin = true,
+              }
+            end,
+          },
         },
       })
       vim.api.nvim_create_augroup('BufWritePostFormatter', {})
       vim.api.nvim_create_autocmd('BufWritePost', {
         command = 'FormatWrite',
         group = 'BufWritePostFormatter',
-        pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json' },
+        pattern = { '*.js', '*.jsx', '*.ts', '*.tsx', '*.json', '*.py', '*.rb' },
       })
     end,
   },
@@ -293,6 +368,19 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "lua",
+          "vim",
+          "vimdoc",
+          "javascript",
+          "typescript",
+          "tsx",
+          "json",
+          "css",
+          "html",
+          "python",
+          "ruby",
+        },
         autopairs = { enable = false },
         incremental_selection = { enable = true },
         indent = { enable = true },

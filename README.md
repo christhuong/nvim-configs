@@ -16,6 +16,11 @@ npm install -g typescript typescript-language-server vscode-langservers-extracte
 npm install -g eslint prettier
 ```
 
+```shell
+pip install pyright ruff black
+gem install ruby-lsp rubocop
+```
+
 ```vim
 :TSInstall typescript javascript tsx json css html vim ruby python lua
 ```
