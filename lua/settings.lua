@@ -19,6 +19,7 @@ vim.opt.rnu = false -- show relative number
 vim.opt.shiftwidth = 2 -- even if there are tabs, preview as 2 spaces
 vim.opt.showmatch = true -- highlight matching parenthesis
 vim.opt.showmode = false -- get rid of -- INSERT -- line
+vim.opt.showcmd = false -- don't show partial commands in bottom right
 vim.opt.smartcase = true -- case-sensitive when uppercase present
 vim.opt.smartindent = true -- be smart about indentation
 vim.opt.smarttab = true
