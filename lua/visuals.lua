@@ -20,11 +20,11 @@ vim.cmd [[ colorscheme xcodedarkhc ]]
 -- vim.g.fzf_layout = { ['window'] = { ['width'] = 1, ['height'] = 1, ['border'] = 'none' } }
 vim.g.fzf_preview_window = {'right:30%', 'ctrl-/'}  -- Show preview on right
 -- vim.g.fzf_preview_window = ''  -- Hide preview window
--- Hide UI elements when FZF is active
-vim.cmd [[
-  autocmd FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-]]
+-- Hide UI elements when FZF is active (when using full screen)
+-- vim.cmd [[
+--   autocmd FileType fzf set laststatus=0 noshowmode noruler
+--   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+-- ]]
 -- FZF color scheme integration
 vim.cmd [[
   let $FZF_DEFAULT_OPTS="--preview-window=noborder"
@@ -46,7 +46,9 @@ vim.cmd [[
   \ }
 ]]
 
+--
 -- 📈 TABS & STATUS LINES
+--
 vim.g.airline_theme = 'transparent'
 vim.g.airline_highlighting_cache = 0
 vim.cmd [[
@@ -117,8 +119,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     ]]
   end,
 })
-
--- 🔌 LSP STATUS FUNCTION
 -- Shows active LSP clients in the status line
 function _G.get_lsp_status()
   local buf = vim.api.nvim_get_current_buf()
@@ -137,7 +137,6 @@ function _G.get_lsp_status()
     return "..."
   end
 end
-
 -- Auto-refresh status line when LSP clients attach/detach
 vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach" }, {
   callback = function()

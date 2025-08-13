@@ -372,6 +372,7 @@ require("lazy").setup({
           "lua",
           "vim",
           "vimdoc",
+          "markdown",
           "javascript",
           "typescript",
           "tsx",
@@ -443,8 +444,6 @@ require("lazy").setup({
       local width = math.floor(screen_w)
       local height = math.floor(screen_h)
       
-      -- Diagnostics disabled in nvim-tree to avoid sign conflicts
-      
       require("nvim-tree").setup({
         respect_buf_cwd = true,
         renderer = {
@@ -491,6 +490,7 @@ require("lazy").setup({
           ignore_list = {},
         },
         diagnostics = {
+          -- Diagnostics disabled in nvim-tree to avoid sign conflicts
           enable = false,
         },
         view = {

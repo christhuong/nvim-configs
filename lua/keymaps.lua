@@ -73,6 +73,7 @@ vim.opt.autowriteall = true
 map('t', 'jj', '<C-\\><C-n>', default_opts)
 map('t', 'jk', '<C-\\><C-n>', default_opts)
 map('n', '<leader>.', ':vs +term<CR>i', default_opts)
+-- use `:file <name>` to rename the terminal buffer
 
 -- tabs mappings
 map('n', 'J', 'gT', default_opts)
