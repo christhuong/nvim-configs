@@ -75,9 +75,9 @@ vim.cmd [[
   let g:airline#extensions#tabline#right_sep = ' '
   let g:airline#extensions#tabline#right_alt_sep = ' '
   " Hide unnecessary sections for clean look
-  let g:airline_section_x = '%{v:lua.get_lsp_status()}'  " Show LSP status
-  let g:airline_section_y = ''    " Hide file format
-  let g:airline_section_z = ''    " Hide position info
+  let g:airline_section_x = ''
+  let g:airline_section_y = ''
+  let g:airline_section_z = ''
   let g:airline_section_error = ''
   let g:airline_section_warning = ''
   if !exists('g:airline_symbols')
@@ -123,32 +123,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       highlight VertSplit guibg=NONE guifg=#3E4451 gui=NONE
       highlight SignColumn guibg=NONE
     ]]
-  end,
-})
--- Shows active LSP clients in the status line
-function _G.get_lsp_status()
-  local buf = vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.get_clients { bufnr = buf }
-  local client_names = {}
-  for _, client in pairs(clients) do
-    if client.server_capabilities then
-      table.insert(client_names, client.name)
-    end
-  end
-  if #client_names > 0 then
-    local status = ""
-    for _ = 1, #client_names do
-      status = status .. "✔"
-    end
-    return status
-  else
-    return ""
-  end
-end
--- Auto-refresh status line when LSP clients attach/detach
-vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach" }, {
-  callback = function()
-    vim.cmd("AirlineRefresh")
   end,
 })
 
