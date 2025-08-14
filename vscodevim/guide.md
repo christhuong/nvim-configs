@@ -12,68 +12,109 @@ cp ~/.config/nvim/vscodevim/settings.json '~/Library/Application Support/Cursor/
 
 ## **Keybindings**
 
-### **🔍 File Navigation (FZF-style)**
+### 🔍 File Navigation & Search
 
-| Keybinding   | Action               | Neovim Equivalent |
-| ------------ | -------------------- | ----------------- |
-| `<leader>fa` | All symbols search   | `:Files`          |
-| `<leader>fc` | Find in files        | `:Rg <C-R><C-W>`  |
-| `<leader>fl` | Go to line           | `:Lines`          |
-| `<leader>fh` | Recent files         | `:History`        |
-| `<leader>fs` | Git changes          | `:GFiles?`        |
-| `<leader>o`  | Switch window/buffer | `:Buffers`        |
+| Keybinding   | Action                         |
+| ------------ | ------------------------------ |
+| `<leader>ff` | Quick Open                     |
+| `<leader>fa` | Show All Symbols               |
+| `<leader>fw` | Open Search View               |
+| `<leader>fc` | Find in Files                  |
+| `<leader>fl` | Go to Line                     |
+| `<leader>fh` | Open Recent                    |
+| `<leader>o`  | Switch Window/Editor           |
+| `<leader>r`  | Reveal Active File in Explorer |
+| `<leader>m`  | Toggle Sidebar Visibility      |
+| `<leader>fs` | Git/SCM View                   |
 
-### **📝 Text Manipulation**
+### 📝 Text Manipulation
 
-| Keybinding | Action                   | Notes                           |
-| ---------- | ------------------------ | ------------------------------- |
-| `<C-j>`    | Move line/selection down | Works in normal, insert, visual |
-| `<C-k>`    | Move line/selection up   | Works in normal, insert, visual |
-| `<Esc>`    | Clear search highlight   | Just like `:nohl` in Neovim     |
+| Keybinding | Action                   | Modes                  |
+| ---------- | ------------------------ | ---------------------- |
+| `<C-j>`    | Move line/selection down | Normal, Insert, Visual |
+| `<C-k>`    | Move line/selection up   | Normal, Insert, Visual |
+| `<Esc>`    | Clear search highlight   | Normal                 |
 
-### **🪟 Window & Split Management**
+### 🪟 Window & Split Management
 
-| Keybinding  | Action           | Neovim Equivalent     |
-| ----------- | ---------------- | --------------------- |
-| `<leader>s` | Horizontal split | `:split`              |
-| `<leader>v` | Vertical split   | `:vsplit`             |
-| `=`         | Increase width   | `vertical resize +10` |
-| `-`         | Decrease width   | `vertical resize -10` |
+| Keybinding  | Action              |
+| ----------- | ------------------- |
+| `<leader>v` | Vertical split      |
+| `<leader>s` | Horizontal split    |
+| `=`         | Increase view width |
+| `-`         | Decrease view width |
 
-### **📑 Tab Navigation**
+### 📑 Editor/Tab Navigation
 
-| Keybinding    | Action             | Neovim Equivalent  |
-| ------------- | ------------------ | ------------------ |
-| `<leader>1-9` | Go to tab 1-9      | `1gt`, `2gt`, etc. |
-| `<leader>t`   | New file           | `:tabnew`          |
-| `<C-t>`       | Move to new window | `<C-w>T`           |
-| `J`           | Previous editor    | `gT`               |
-| `K`           | Next editor        | `gt`               |
+| Keybinding    | Action                    |
+| ------------- | ------------------------- |
+| `<leader>1-9` | Open editor at index 1-9  |
+| `<leader>t`   | New untitled file         |
+| `<C-t>`       | Move editor to new window |
+| `J`           | Previous editor           |
+| `K`           | Next editor               |
 
-### **🔧 File Operations**
+### 🔧 File Operations
 
-| Keybinding   | Action             | Neovim Equivalent         |
-| ------------ | ------------------ | ------------------------- |
-| `cp`         | Copy relative path | `:let @* = expand("%")`   |
-| `cP`         | Copy full path     | `:let @* = expand("%:p")` |
-| `<leader>qq` | Force close editor | `:q!`                     |
-| `<leader>wq` | Save and close     | `:wq`                     |
+| Keybinding   | Action                  |
+| ------------ | ----------------------- |
+| `cp`         | Copy relative file path |
+| `cP`         | Copy full file path     |
+| `<leader>q`  | Quit editor             |
+| `<leader>qq` | Close active editor     |
+| `<leader>w`  | Save file               |
+| `<leader>wq` | Save and close          |
 
-### **📚 Git Integration**
+### 📚 Git Integration (with GitLens)
 
-| Keybinding    | Action            | Neovim Equivalent                     |
-| ------------- | ----------------- | ------------------------------------- |
-| `<leader>gs`  | Git/SCM view      | `:Git`                                |
-| `<leader>glb` | Toggle line blame | `:Gitsigns toggle_current_line_blame` |
-| `<leader>gd`  | Show diff         | `:Gitsigns diffthis`                  |
-| `gk`          | Previous change   | `:Gitsigns prev_hunk`                 |
-| `gj`          | Next change       | `:Gitsigns next_hunk`                 |
+| Keybinding    | Action                     |
+| ------------- | -------------------------- |
+| `<leader>gs`  | Git/SCM view               |
+| `<leader>gd`  | Open Git file              |
+| `<leader>glb` | Toggle line blame          |
+| `<leader>gh`  | Open file on remote (link) |
+| `<leader>gb`  | Toggle file blame (inline) |
+| `<leader>gB`  | Copy remote file URL       |
+| `gk`          | Previous change            |
+| `gj`          | Next change                |
 
-### **🤖 Tools**
+### 🚦 Diagnostics & LSP-like Actions
 
-| Keybinding  | Action          | Notes            |
-| ----------- | --------------- | ---------------- |
-| `<leader>.` | Toggle terminal | Like `:vs +term` |
+| Keybinding  | Action                 |
+| ----------- | ---------------------- |
+| `<leader>e` | Next error/warning     |
+| `<leader>d` | Previous error/warning |
+| `<leader>k` | Show hover             |
+| `<leader>p` | Format document        |
+
+### 🤖 Tools
+
+| Keybinding  | Action          |
+| ----------- | --------------- |
+| `<leader>.` | Toggle terminal |
+
+### ⌨️ Insert Mode
+
+| Keybinding | Action                 |
+| ---------- | ---------------------- |
+| `jj`       | Exit insert mode (Esc) |
+| `jk`       | Exit insert mode (Esc) |
+| `<C-j>`    | Move line down         |
+| `<C-k>`    | Move line up           |
+
+### ✂️ Visual Mode
+
+| Keybinding   | Action                   |
+| ------------ | ------------------------ |
+| `>`          | Indent selection         |
+| `<`          | Outdent selection        |
+| `<C-j>`      | Move selection down      |
+| `<C-k>`      | Move selection up        |
+| `<leader>gh` | Open selection on remote |
+| `<leader>gb` | Toggle file blame        |
+| `<leader>gB` | Copy remote URL          |
+| `<leader>e`  | Next error/warning       |
+| `<leader>d`  | Previous error/warning   |
 
 ## 🐛 **If Something Breaks:**
 
