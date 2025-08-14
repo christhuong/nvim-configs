@@ -512,11 +512,6 @@ require("lazy").setup({
         },
         filters = {
           dotfiles = false,
-          custom = {
-            ".git",
-            "node_modules",
-            ".cache",
-          },
         },
         disable_netrw = false,
         hijack_netrw = true,
