@@ -67,7 +67,7 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },  -- Load when opening files
-    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "lua", "python", "ruby", "go", "rust" },
+    ft = { "javascript", "typescript", "typescriptreact", "javascriptreact", "lua", "python", "ruby" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",  -- LSP completion integration
     },
@@ -82,13 +82,13 @@ require("lazy").setup({
         vim.api.nvim_set_keymap('n', '<space>d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)  -- Previous error/warning
         vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)  -- Next error/warning
         -- LSP navigation keybindings (buffer-specific)
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)      -- Go to declaration
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)     -- Go to declaration
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)  -- Go to implementation
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)      -- Go to definition
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)      -- Show references
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)    -- Show hover documentation
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)  -- Go to type definition
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>R', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)    -- Rename symbol
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>R', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)       -- Rename symbol
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>i', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)  -- Show code actions
       end
       -- Enhanced LSP capabilities for better completion integration
@@ -175,13 +175,10 @@ require("lazy").setup({
     cmd = { "Format", "FormatWrite" },  -- Available commands
     config = function()
       require("formatter").setup({
-        logging = false,                   -- Disable verbose logging
-        log_level = vim.log.levels.WARN,   -- Only show warnings/errors
+        logging = false,
         -- Configure formatters by file type
         filetype = {
-          -- Lua: stylua for consistent Lua formatting
           lua = { require("formatter.filetypes.lua").stylua },
-          -- JavaScript/TypeScript: Prettier for consistent web formatting
           javascript = { require("formatter.filetypes.javascript").prettier },
           javascriptreact = { require("formatter.filetypes.javascript").prettier },
           typescript = { require("formatter.filetypes.typescript").prettier },
@@ -252,95 +249,15 @@ require("lazy").setup({
       "saadparwaiz1/cmp_luasnip", -- Snippet completion integration
     },
     config = function()
-      -- Pretty icons for different completion item types (requires Nerd Fonts)
-      local kind_icons = {
-        Text = "󰉿",          -- Plain text
-        Method = "󰆧",        -- Class methods
-        Function = "󰊕",      -- Functions
-        Constructor = "󰡱",   -- Class constructors
-        Field = "󰜢",         -- Object fields
-        Variable = "󰀫",      -- Variables
-        Class = "󰠱",         -- Classes
-        Interface = "󰜰",     -- Interfaces
-        Module = "󰏗",        -- Modules/imports
-        Property = "󰜢",      -- Object properties
-        Unit = "󰑭",          -- Units of measurement
-        Value = "󰎠",         -- Values/constants
-        Enum = "󰒻",          -- Enumerations
-        Keyword = "󰌋",       -- Language keywords
-        Snippet = "󰘦",       -- Code snippets
-        Color = "󰏘",         -- Color values
-        File = "󰈙",          -- File references
-        Reference = "󰈇",     -- References
-        Folder = "󰉋",        -- Directories
-        EnumMember = "󰕘",    -- Enum members
-        Constant = "󰏿",      -- Constants
-        Struct = "󰙅",        -- Data structures
-        Event = "󰉁",         -- Events
-        Operator = "󰆕",      -- Operators
-        TypeParameter = "󰊄", -- Generic type parameters
-        Key = "󰌋",           -- Object keys
-        Namespace = "󰌗",     -- Namespaces
-        Null = "󰟢",          -- Null values
-        Number = "󰎠",        -- Numbers
-        String = "󰉿",        -- Strings
-        Boolean = "󰨙",       -- Booleans
-        Array = "󰅪",         -- Arrays
-        Object = "󰅩",        -- Objects
-        Copilot = "",        -- GitHub Copilot suggestions
-        TabNine = "󰏚",       -- TabNine AI suggestions
-      }
-      -- Helper function to check if cursor is at beginning or after whitespace
-      local check_backspace = function()
-        local col = vim.fn.col "." - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-      end
       local luasnip = require("luasnip")
       local cmp = require("cmp")
       cmp.setup({
-        -- Customize how completion items are displayed
-        formatting = {
-          fields = { "kind", "abbr", "menu" },  -- Order: icon, text, source
-          format = function(entry, vim_item)
-            -- Add pretty icons to completion items
-            vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind] or "", vim_item.kind)
-            -- Show completion source in brackets
-            vim_item.menu = ({
-              nvim_lsp = "",    -- Language server
-              luasnip = "",     -- Code snippets
-              buffer = "",      -- Text from open buffers
-              path = "",        -- File paths
-              nvim_lua = "",    -- Neovim Lua API
-              copilot = "",     -- GitHub Copilot
-              cmp_tabnine = "", -- TabNine AI
-            })[entry.source.name]
-            return vim_item
-          end,
-        },
         -- Snippet expansion setup
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
-        -- Control duplicate items from different sources
-        duplicates = {
-          nvim_lsp = 1,
-          luasnip = 1,
-          cmp_tabnine = 1,
-          buffer = 1,
-          path = 1,
-        },
-        -- Completion confirmation behavior
-        confirm_opts = {
-          behavior = cmp.ConfirmBehavior.Replace,  -- Replace selected text
-          select = false,  -- Don't auto-select first item
-        },
-        -- Trigger completion after typing 1 character
-        completion = {
-          keyword_length = 1,
-        },
-        -- Completion sources in priority order
         sources = {
           { name = "nvim_lsp" },    -- Highest priority: LSP suggestions
           { name = "luasnip" },     -- Second: Code snippets
@@ -354,27 +271,8 @@ require("lazy").setup({
           ["<C-p>"] = cmp.mapping.select_prev_item(),    -- Previous item (alternative)
           ["<C-j>"] = cmp.mapping.select_next_item(),    -- Next item
           ["<C-n>"] = cmp.mapping.select_next_item(),    -- Next item (alternative)
-          -- Trigger completion manually
-          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
           -- Accept completion
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          -- Smart Tab behavior: complete, expand snippets, or fallback
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expandable() then
-              luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif check_backspace() then
-              fallback()  -- Normal tab behavior
-            else
-              fallback()
-            end
-          end, {
-            "i",  -- Insert mode
-            "s",  -- Select mode
-          }),
         },
       })
     end,
@@ -406,23 +304,12 @@ require("lazy").setup({
           "python",       -- Python development
           "ruby",         -- Ruby development
         },
-        -- Additional features
-        autopairs = { enable = false },            -- Disable auto-pairs (using separate plugin)
-        incremental_selection = { enable = true }, -- Smart text selection
-        indent = { enable = true },                -- Better auto-indentation
         -- Rainbow parentheses for better code readability
         rainbow = {
           enable = true,
           disable = { "html" },      -- Disable for HTML (can be messy)
-          extended_mode = false,     -- Don't rainbow non-bracket delimiters
-          max_file_lines = nil,      -- No file size limit
         },
         autotag = { enable = true },  -- Auto-close HTML/XML tags
-        -- Core syntax highlighting
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,  -- Disable old regex highlighting
-        }
       })
     end,
   },
@@ -484,50 +371,15 @@ require("lazy").setup({
     config = function()
       require("nvim-tree").setup({
         -- Basic behavior
-        respect_buf_cwd = true,  -- Update tree when changing directory
-        renderer = {
-          icons = {
-            glyphs = {
-              default = "",
-              symlink = "",
-              git = {
-                deleted = "",
-                ignored = "◌",
-                renamed = "➜",
-                staged = "✓",
-                unmerged = "",
-                unstaged = "✗",
-                untracked = "★",
-              },
-              folder = {
-                default = "",
-                empty = "",
-                empty_open = "",
-                open = "",
-                symlink = "",
-                symlink_open = "",
-              },
-            }
-          }
-        },
-        filters = {
-          dotfiles = false,
-        },
-        disable_netrw = false,
-        hijack_netrw = true,
-        open_on_tab = false,
-        hijack_cursor = true,
-        update_cwd = true,
+        hijack_cursor = true,     -- DEFAULT: false
+        update_cwd = true,        -- DEFAULT: false
         update_focused_file = {
-          enable = true,
-          update_cwd = false,
-          ignore_list = {},
+          enable = true,        -- DEFAULT: false
         },
         diagnostics = {
           -- Diagnostics disabled in nvim-tree to avoid sign conflicts
           enable = false,
         },
-        -- FLOATING WINDOW CONFIGURATION - PRESERVES SPLIT RATIOS
         view = {
           float = {
             enable = true,              -- Enable floating mode (no sidebar disruption)
@@ -543,20 +395,9 @@ require("lazy").setup({
             },
           },
         },
-        git = {
-          enable = true,
-          ignore = false,
-          timeout = 500,
-        },
         actions = {
-          change_dir = {
-            global = false,
-          },
           open_file = {
             quit_on_open = true,  -- Close floating tree after opening file
-            window_picker = {
-              enable = true,  -- Allow picking which window to open file in
-            }
           },
         },
       })
@@ -619,55 +460,7 @@ require("lazy").setup({
     dependencies = "nvim-lua/plenary.nvim",
     cmd = { "Gitsigns" },
     config = function()
-      require('gitsigns').setup({
-        signs = {
-          add          = { text = '┃' },
-          change       = { text = '┃' },
-          delete       = { text = '_' },
-          topdelete    = { text = '‾' },
-          changedelete = { text = '~' },
-          untracked    = { text = '┆' },
-        },
-        signs_staged = {
-          add          = { text = '┃' },
-          change       = { text = '┃' },
-          delete       = { text = '_' },
-          topdelete    = { text = '‾' },
-          changedelete = { text = '~' },
-          untracked    = { text = '┆' },
-        },
-        signs_staged_enable = true,
-        signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-        numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-        linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-        word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-        watch_gitdir = {
-          follow_files = true
-        },
-        auto_attach = true,
-        attach_to_untracked = false,
-        current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_opts = {
-          virt_text = true,
-          virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-          delay = 1000,
-          ignore_whitespace = false,
-          virt_text_priority = 100,
-        },
-        current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
-        sign_priority = 6,
-        update_debounce = 100,
-        status_formatter = nil, -- Use default
-        max_file_length = 40000, -- Disable if file is longer than this (in lines)
-        preview_config = {
-          -- Options passed to nvim_open_win
-          border = 'single',
-          style = 'minimal',
-          relative = 'cursor',
-          row = 0,
-          col = 1
-        },
-      })
+      require('gitsigns').setup({})
     end,
   },
   -- GitHub/GitLab line links - Open current line/selection on remote

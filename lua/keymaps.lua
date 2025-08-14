@@ -72,7 +72,7 @@ map('n', '-', ':exe "vertical resize -10"<CR>', default_opts)
 vim.opt.autowriteall = true
 map('t', 'jj', '<C-\\><C-n>', default_opts)
 map('t', 'jk', '<C-\\><C-n>', default_opts)
-map('n', '<leader>.', ':vs +term<CR>i', default_opts)
+map('n', '<leader>.', ':tabnew +term<CR>i', default_opts)
 -- use `:file <name>` to rename the terminal buffer
 
 -- tabs mappings
@@ -98,19 +98,28 @@ map('n', '<leader>r', ':NvimTreeFindFile<CR>', default_opts)
 -- map('n', '<leader>p', ':silent exec "!yarn eslint %:p --fix"<CR>', default_opts)
 map('n', '<leader>p', ':FormatWrite<CR>', default_opts)
 
--- copilot  
-map('n', '<leader>cs', ':Copilot status<CR>', default_opts)
-map('n', '<leader>ce', ':Copilot enable<CR>', default_opts)
-map('n', '<leader>cd', ':Copilot disable<CR>', default_opts)
-map('n', '<leader>cp', ':Copilot panel<CR>', default_opts)
-
--- commands
+-- user commands
 local create_user_command = vim.api.nvim_create_user_command
-create_user_command('Cdnvim', ':e ~/.config/nvim', {})
-create_user_command('Cdzshrc', ':e ~/.zshrc', {})
+-- Change to nvim config directory and refresh context
+create_user_command('Cd', function(opts)
+  vim.cmd('cd ' .. opts.args)
+  vim.cmd('NvimTreeRefresh')
+  vim.cmd('e ' .. opts.args)
+end, { nargs = '?' })
+create_user_command('Cdnvim', function()
+  vim.cmd('Cd ~/.config/nvim')
+end, {})
+create_user_command('Cdnotes', function()
+  vim.cmd('Cd ~/Documents/notes')
+end, {})
+create_user_command('Zshrc', ':e ~/.zshrc', {})
 --
-create_user_command('CommitAndPushAllFiles', function(opts)
-  local commit_message = opts.args or 'Update files'
+create_user_command('GitPushAll', function(opts)
+  local commit_message = opts.args
   vim.cmd(string.format(':! git add . && git commit -m %s && git push origin head', commit_message))
+end, { nargs = '?' })
+create_user_command('GitRestore', function(opts)
+  local file_path = opts.args
+  vim.cmd(string.format(':! git restore --source master -- %s', file_path))
 end, { nargs = '?' })
 

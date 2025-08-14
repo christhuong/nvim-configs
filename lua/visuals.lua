@@ -129,18 +129,20 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 function _G.get_lsp_status()
   local buf = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_clients { bufnr = buf }
-  
   local client_names = {}
   for _, client in pairs(clients) do
     if client.server_capabilities then
       table.insert(client_names, client.name)
     end
   end
-  
   if #client_names > 0 then
-    return " "
+    local status = ""
+    for _ = 1, #client_names do
+      status = status .. "✔"
+    end
+    return status
   else
-    return "..."
+    return ""
   end
 end
 -- Auto-refresh status line when LSP clients attach/detach
