@@ -92,7 +92,7 @@ map('n', '<C-t>', '<C-w>T', default_opts) -- open slit into new tab
 
 -- nvimtree
 map('n', '<leader>m', ':NvimTreeToggle<CR>', default_opts)
-map('n', '<leader>r', ':NvimTreeFindFile<CR>', default_opts)
+map('n', '<leader>r', ':NvimTreeFindFileToggle<CR>', default_opts)
 
 -- formatting
 -- map('n', '<leader>p', ':silent exec "!yarn eslint %:p --fix"<CR>', default_opts)

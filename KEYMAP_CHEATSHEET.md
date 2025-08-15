@@ -204,26 +204,27 @@
 
 ### NvimTree (Floating File Explorer)
 
-| Key         | Mode   | Action               | Description                             |
-| ----------- | ------ | -------------------- | --------------------------------------- |
-| `<C-n>`     | Normal | Toggle floating tree | Show/hide floating file tree            |
-| `<leader>e` | Normal | Find file in tree    | Find and highlight current file in tree |
-| `<leader>m` | Normal | Toggle tree          | Alternative tree toggle                 |
-| `<leader>r` | Normal | Find file            | Find current file in tree               |
+| Key         | Mode   | Action      | Description               |
+| ----------- | ------ | ----------- | ------------------------- |
+| `<leader>m` | Normal | Toggle tree | Alternative tree toggle   |
+| `<leader>r` | Normal | Find file   | Find current file in tree |
 
 #### NvimTree Actions (Within Tree Window)
 
-| Key (in tree) | Action                 | Description            |
-| ------------- | ---------------------- | ---------------------- |
-| `Enter`       | Open file/folder       | Open selected item     |
-| `a`           | Create new file/folder | Add new item           |
-| `d`           | Delete                 | Delete selected item   |
-| `r`           | Rename                 | Rename selected item   |
-| `x`           | Cut                    | Cut selected item      |
-| `c`           | Copy                   | Copy selected item     |
-| `p`           | Paste                  | Paste cut/copied item  |
-| `R`           | Refresh                | Refresh tree view      |
-| `H`           | Toggle hidden files    | Show/hide hidden files |
+| Key (in tree) | Action                 | Description                        |
+| ------------- | ---------------------- | ---------------------------------- |
+| `Enter`       | Open file/folder       | Open selected item                 |
+| `a`           | Create new file/folder | Add new item                       |
+| `d`           | Delete                 | Delete selected item               |
+| `r`           | Rename                 | Rename selected item               |
+| `x`           | Cut                    | Cut selected item                  |
+| `yy`          | Copy node              | Copy selected item (file/folder)   |
+| `p`           | Paste                  | Paste cut/copied item              |
+| `cp`          | Copy relative path     | Copy selected file's relative path |
+| `cP`          | Copy absolute path     | Copy selected file's absolute path |
+| `R`           | Refresh                | Refresh tree view                  |
+| `H`           | Toggle hidden files    | Show/hide hidden files             |
+| `I`           | Toggle ignored files   | Show/hide git ignored files        |
 
 ### FZF Fuzzy Finding
 

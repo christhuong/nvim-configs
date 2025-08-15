@@ -363,10 +363,6 @@ require("lazy").setup({
       "NvimTreeCollapse",           -- Collapse tree nodes
       "NvimTreeCollapseKeepBuffers" -- Collapse but keep open files expanded
     },
-    keys = {
-      { "<C-n>", "<cmd>NvimTreeToggle<cr>", desc = "Toggle floating file tree" },
-      { "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", desc = "Find current file in tree" },
-    },
     config = function()
       require("nvim-tree").setup({
         -- Basic behavior
@@ -399,6 +395,21 @@ require("lazy").setup({
             quit_on_open = true,  -- Close floating tree after opening file
           },
         },
+        on_attach = function(bufnr)
+          local api = require('nvim-tree.api')
+          local function opts(desc)
+            return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
+          api.config.mappings.default_on_attach(bufnr)
+          -- Remap the copy node functionality to 'yy' (more intuitive)
+          vim.keymap.del('n', 'c', { buffer = bufnr })
+          vim.keymap.set('n', 'yy', api.fs.copy.node, opts('Copy Node'))
+          -- Set custom cp/cP mappings
+          vim.keymap.set('n', 'cp', api.fs.copy.relative_path, opts('Copy Relative Path'))
+          vim.keymap.set('n', 'cP', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
+          -- Add Esc to close tree
+          vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close Tree'))
+        end,
       })
     end,
   },
@@ -413,12 +424,6 @@ require("lazy").setup({
   {
     "phaazon/hop.nvim",
     event = "VeryLazy",
-    keys = {
-      { "f", mode = { "n", "x", "o" } },
-      { "F", mode = { "n", "x", "o" } },
-      { "t", mode = { "n", "x", "o" } },
-      { "T", mode = { "n", "x", "o" } },
-    },
     cmd = { "HopWord", "HopLine", "HopChar1", "HopChar2", "HopPattern" },
     config = function()
       require("hop").setup()
