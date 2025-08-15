@@ -3,7 +3,7 @@
 ## Getting ready
 
 ```shell
-brew install neovim fzf ripgrep
+brew install neovim fzf ripgrep bat
 ```
 
 ```shell
@@ -41,6 +41,12 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 osascript -e 'id of app "Cursor"'
 defaults write 'com.todesktop.230313mzl4w4u92' ApplePressAndHoldEnabled -bool false
 # defaults write 'com.microsoft.VSCode' ApplePressAndHoldEnabled -bool false
+```
+
+### Tmux
+```shell
+brew install tmux
+cp ~/.config/nvim/tmux/.tmux.conf ~/.tmux.conf
 ```
 
 ## 📖 Key-maps reference

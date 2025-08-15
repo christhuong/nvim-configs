@@ -226,7 +226,6 @@ require("lazy").setup({
         gitcommit = false,    -- Disable for git commit messages
         gitrebase = false,    -- Disable for git rebase
         help = false,         -- Disable for help files
-        markdown = false,     -- Disable for markdown (avoid suggestions in docs)
         yaml = false,         -- Disable for YAML files
       }
       -- Custom keybindings (disable default Tab mapping)
