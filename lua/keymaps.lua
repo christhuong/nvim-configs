@@ -15,6 +15,8 @@ map('n', '<Esc>', ':noh<CR><ESC>', default_opts)
 map('n', '<leader>qq', ':q!<CR>', default_opts)
 map('n', '<leader>ww', ':w<CR>', default_opts)
 map('n', '<leader>wq', ':wq<CR>', default_opts)
+-- quick refresh a file
+map('n', '<leader>ee', ':e!<CR>', default_opts)
 
 -- move codes around
 map('n', '<C-j>', ':m .+1<CR>==', default_opts)
@@ -118,8 +120,13 @@ create_user_command('GitPushAll', function(opts)
   local commit_message = opts.args
   vim.cmd(string.format(':! git add . && git commit -m %s && git push origin head', commit_message))
 end, { nargs = '?' })
+-- allows passing two arguments: branch and file, for example `:GitRestore main src/file.tsx`
 create_user_command('GitRestore', function(opts)
-  local file_path = opts.args
-  vim.cmd(string.format(':! git restore --source master -- %s', file_path))
-end, { nargs = '?' })
+  local branch, file = opts.fargs[1], opts.fargs[2]
+  if not branch or not file then
+    print('Usage: GitRestore <branch> <file>')
+    return
+  end
+  vim.cmd(string.format(':! git checkout %s -- %s', branch, file))
+end, { nargs = '*' })
 
